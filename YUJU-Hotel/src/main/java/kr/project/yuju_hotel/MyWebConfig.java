@@ -1,4 +1,4 @@
-package kr.project.linme;
+package kr.project.yuju_hotel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import kr.project.linme.interceptors.MyInterceptor;
+import kr.project.yuju_hotel.interceptors.MyInterceptor;
 
 @Configuration
 @SuppressWarnings("null")

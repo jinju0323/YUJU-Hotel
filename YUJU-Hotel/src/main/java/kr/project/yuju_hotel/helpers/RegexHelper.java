@@ -1,10 +1,10 @@
-package kr.project.linme.helpers;
+package kr.project.yuju_hotel.helpers;
 
 import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Component;
 
-import kr.project.linme.exceptions.StringFormatException;
+import kr.project.yuju_hotel.exceptions.StringFormatException;
 
 @Component
 public class RegexHelper {

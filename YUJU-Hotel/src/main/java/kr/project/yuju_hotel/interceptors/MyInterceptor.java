@@ -1,4 +1,4 @@
-package kr.project.linme.interceptors;
+package kr.project.yuju_hotel.interceptors;
 
 import java.util.Map;
 
@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kr.project.linme.helpers.WebHelper;
+import kr.project.yuju_hotel.helpers.WebHelper;
 import lombok.extern.slf4j.Slf4j;
 import ua_parser.Client;
 import ua_parser.Parser;

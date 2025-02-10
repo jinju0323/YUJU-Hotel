@@ -1,4 +1,4 @@
-package kr.project.linme.helpers;
+package kr.project.yuju_hotel.helpers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.project.linme.models.UploadItem;
+import kr.project.yuju_hotel.models.UploadItem;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.Thumbnails.Builder;

@@ -1,4 +1,4 @@
-package kr.project.linme;
+package kr.project.yuju_hotel;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
