@@ -3,8 +3,8 @@
 
 ## ▶️ ERD
 
-![alt text](yuju_1.png)
+![alt text](Database\ERD\yuju_1.png)
 
 ## ▶️ Usecase
 
-![alt text](yuju_1-1.png)
+![alt text](Usecase\yuju_1.png)
