@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-YujuHotelApplication<yuju_hotel-YUJU-Hotel>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "kr.project.yuju_hotel.YujuHotelApplication",
+            "projectName": "yuju_hotel-YUJU-Hotel",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
