@@ -1,0 +1,32 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head th:fragment="common-header">
+    <th:block th:replace="~{/fragments/_head :: common-head}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    <!--로고-->
+    <div class="container">
+        <a class="logo">
+          <img th:src="@{/assets/img/favicon-16x16.png}" alt="logo" class="logo">
+        </a>
+  
+        <!-- 네비게이션 메뉴 -->
+        <div class="navbar" id="navbar">
+          <ul class="navbarnav">
+            <li class="navItem">
+              <a class="navLink" href="/">객실소개</a>
+            </li>
+            <li class="navItem">
+              <a class="navLink" href="/about">로그인</a>
+            </li>
+            <li class="navItem">
+              <a class="navLink" href="/contact">예약</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </body>
+</html>
