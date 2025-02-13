@@ -1,0 +1,100 @@
+/* ✅ 기본 스타일 */
+.headerContainer {
+    display: flex;
+    justify-content: space-between; /* 로고 왼쪽, 메뉴 오른쪽 정렬 */
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #ddd;
+}
+
+/* ✅ 로고 스타일 */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 50px;
+    height: auto;
+}
+
+/* ✅ 네비게이션 메뉴 스타일 */
+.navbar {
+    display: flex;
+    margin-left: auto; /* 네비게이션을 오른쪽으로 이동 */
+}
+
+.navbarnav {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* 메뉴 간격 */
+    margin: 0;
+    padding: 0;
+}
+
+.navItem {
+    list-style: none;
+}
+
+.navLink {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 15px;
+    transition: color 0.3s;
+}
+
+.navLink:hover {
+    color: #007bff;
+}
+
+/* ✅ 반응형: 화면 너비가 768px 이하일 때 (태블릿, 모바일) */
+@media screen and (max-width: 768px) {
+    .headerContainer {
+        flex-direction: column; /* 로고와 메뉴를 세로 배치 */
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+    .navbar {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .navbarnav {
+        flex-direction: column; /* 메뉴를 세로 정렬 */
+        gap: 10px;
+    }
+
+    .navItem {
+        width: 100%;
+    }
+
+    .navLink {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+    }
+
+    .navLink:hover {
+        background-color: #007bff;
+        color: white;
+    }
+}
+
+/* ✅ 반응형: 모바일 (480px 이하) */
+@media screen and (max-width: 480px) {
+    .logo-img {
+        width: 40px; /* 로고 크기 축소 */
+    }
+
+    .navLink {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

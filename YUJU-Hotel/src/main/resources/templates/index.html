@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <th:block th:replace="~{_fragments/_head :: common-head('메인 화면')}" />
-    <link rel="stylesheet" th:href="@{/assets/css/common.css}" />
+    <!-- 공통 head 포함 -->
+    <th:block th:replace="~{_fragments/_head :: common-head('YUJU Hotel')}" />
+    <link rel="stylesheet" th:href="@{/assets/css/header.css}" />
+    <!-- 공통 헤더 포함 -->
     <th:block th:replace="~{_fragments/_header :: common-header}" />
-    <style></style>
   </head>
   <body>
+
+    <!--  공통 스크립트 포함 -->
     <th:block th:replace="~{_fragments/_scripts :: common-scripts}" />
   </body>
 </html>

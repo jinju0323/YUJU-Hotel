@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <th:block th:replace="~{_fragments/_head :: common-head('헤더')}" />  
+</head>
+  <body>
+    <header th:fragment="common-header">
+      <div class="headerContainer">
+        <!-- ✅ 로고 -->
+        <a class="logo" href="/">
+          <img th:src="@{/assets/img/favicon-16x16.png}" alt="logo" class="logo-img">
+        </a>
+    
+        <!-- ✅ 네비게이션 메뉴 -->
+        <nav class="navbar">
+          <ul class="navbarnav">
+            <li class="navItem"><a class="navLink" href="#">객실소개</a></li>
+            <li class="navItem"><a class="navLink" href="#">예약</a></li>
+            <li class="navItem"><a class="navLink" href="#">로그인</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  </body>
+</html>
