@@ -2,14 +2,18 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <head>
     <!-- 공통 head 포함 -->
-    <th:block th:replace="~{_fragments/_head :: common-head('YUJU Hotel')}" />
+    <th:block th:replace="~{/fragments/head :: common-head('YUJU Hotel')}" />
     <link rel="stylesheet" th:href="@{/assets/css/header.css}" />
     <!-- 공통 헤더 포함 -->
-    <th:block th:replace="~{_fragments/_header :: common-header}" />
+    <th:block th:replace="~{/fragments/header :: common-header}" />
   </head>
   <body>
-
+    <main></main>
+    
+    <footer>
+      <!-- <th:block th:replace="~{/fragments/footer}" /> -->
+    </footer>
     <!--  공통 스크립트 포함 -->
-    <th:block th:replace="~{_fragments/_scripts :: common-scripts}" />
+    <th:block th:replace="~{/fragments/scripts :: common-scripts}" />
   </body>
 </html>

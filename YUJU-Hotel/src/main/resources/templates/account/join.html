@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <th:block th:replace="~{_fragments/_head :: common-head('회원가입')}" />
+    <th:block th:replace="~{/fragments/head :: common-head('회원가입')}" />
     <link rel="stylesheet" th:href="@{/assets/css/common.css}" />
     <!-- <link rel="stylesheet" th:href="@{/assets/css/해당.css}" /> -->
   </head>
   <body>
     테스트입니다.
-    <th:block th:replace="~{_fragments/_scripts :: common-scripts}" />
+    <th:block th:replace="~{/fragments/scripts :: common-scripts}" />
   </body>
 </html>
