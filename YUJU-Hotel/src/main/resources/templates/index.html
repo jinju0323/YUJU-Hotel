@@ -4,14 +4,18 @@
     <!-- 공통 head 포함 -->
     <th:block th:replace="~{/fragments/head :: common-head('YUJU Hotel')}" />
     <link rel="stylesheet" th:href="@{/assets/css/header.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/footer.css}" />
     <!-- 공통 헤더 포함 -->
     <th:block th:replace="~{/fragments/header :: common-header}" />
+    <link rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"  
+      crossorigin="anonymous">
   </head>
   <body>
     <main></main>
     
     <footer>
-      <!-- <th:block th:replace="~{/fragments/footer}" /> -->
+      <th:block th:replace="~{/fragments/footer :: common-footer}" />
     </footer>
     <!--  공통 스크립트 포함 -->
     <th:block th:replace="~{/fragments/scripts :: common-scripts}" />
