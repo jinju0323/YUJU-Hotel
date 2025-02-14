@@ -4,6 +4,13 @@
     <th:block th:replace="~{/fragments/head :: common-head('회원가입')}" />
     <link rel="stylesheet" th:href="@{/assets/css/common.css}" />
     <link rel="stylesheet" th:href="@{/assets/css/account/join.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/header.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/footer.css}" />
+    <th:block th:replace="~{/fragments/header :: common-header}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous" />
   </head>
   <body>
     <div class="join-container">
@@ -76,6 +83,10 @@
         </form>
       </div>
     </div>
+    <footer>
+      <th:block th:replace="~{/fragments/footer :: common-footer}" />
+    </footer>
+
     <th:block th:replace="~{/fragments/scripts :: common-scripts}" />
   </body>
 </html>
