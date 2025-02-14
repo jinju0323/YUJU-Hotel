@@ -40,6 +40,6 @@
 /* ✅ 반응형 (모바일) */
 @media screen and (max-width: 768px) {
     .swiper {
-        height: 300px; /* 모바일에서 슬라이더 높이 줄이기 */
+        height: 300px; 
     }
 }
