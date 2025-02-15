@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <th:block th:replace="~{/fragments/head :: common-head('푸터')}" />  
+
+</head>
+  <body>
+    <footer th:fragment="common-footer">
+      <div class="footerContainer">
+        <!-- ✅ 푸터 상단 -->
+        <div class="footer">
+          
+          <!-- ✅ 왼쪽: 로고 및 회사 정보 -->
+          <div class="footerLogo">
+            <div class="footerlogo-1">YUJU</div>
+          </div>
+    
+          <!-- ✅ 중앙: 네비게이션 메뉴 -->
+          <div class="footerMain">
+            <ul>
+              <li><a href="#">문의하기</a></li>
+              <li><a href="#">공지사항</a></li>
+            </ul>
+            <p>주식회사 YUJU | 대표: 유주 | 강원 강릉시 성덕로 12</p>
+            <p>통신판매업신고번호 : 제2025-강원강릉-0001호 | 대표번호 : 033-123-4567</p>
+          </div>
+    
+          <!-- ✅ 오른쪽: SNS -->
+          <div class="footerSNS">
+            <p>YUJU HOTEL SNS</p>
+            <div class="footerSNS-icons">
+              <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+              <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- ✅ 푸터 하단 -->
+        <div class="footerEnd">
+          Copyright 2025. YUJU Inc. All Rights Reserved.
+        </div>
+      </div>
+    </footer>    
+  </body>
+</html>
