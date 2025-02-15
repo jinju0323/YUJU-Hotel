@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-YujuApplication<yuju>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "kr.project.yuju.YujuApplication",
+      "projectName": "yuju",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
