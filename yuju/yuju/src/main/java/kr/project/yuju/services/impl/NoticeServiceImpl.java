@@ -17,6 +17,9 @@ public class NoticeServiceImpl implements NoticeService {
     @Autowired
     private NoticeMapper noticeMapper;
 
+    /**
+     * 공지사항 데이터를 저장한다.
+     */
     @Override
     public Notice addItem(Notice input) throws Exception {
         int rows = 0;
@@ -35,6 +38,9 @@ public class NoticeServiceImpl implements NoticeService {
         return noticeMapper.selectItem(input);
     }
 
+    /**
+     * 공지사항 데이터를 수정한다.
+     */
     @Override
     public Notice editItem(Notice input) throws Exception {
         int rows = 0;
@@ -53,6 +59,9 @@ public class NoticeServiceImpl implements NoticeService {
         return noticeMapper.selectItem(input);
     }
 
+    /**
+     * 공지사항 데이터를 삭제한다.
+     */
     @Override
     public int deleteItem(Notice input) throws Exception {
         int rows = 0;
@@ -71,6 +80,9 @@ public class NoticeServiceImpl implements NoticeService {
         return rows;
     }
 
+    /**
+     * 공지사항 데이터를 단일 조회한다.
+     */
     @Override
     public Notice getItem(Notice input) throws Exception {
         Notice output = null;
@@ -89,6 +101,9 @@ public class NoticeServiceImpl implements NoticeService {
         return output;
     }
 
+    /**
+     * 공지사항 데이터를 목록 조회한다.
+     */
     @Override
     public List<Notice> getList(Notice input) throws Exception {
         List<Notice> output = null;
@@ -103,6 +118,9 @@ public class NoticeServiceImpl implements NoticeService {
         return output;
     }
 
+    /**
+     * 공지사항 데이터를 수를 조회한다.
+     */
     @Override
     public int getCount(Notice input) throws Exception {
         int output = 0;

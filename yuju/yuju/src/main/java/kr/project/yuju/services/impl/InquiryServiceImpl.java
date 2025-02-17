@@ -17,6 +17,9 @@ public class InquiryServiceImpl implements InquiryService {
     @Autowired
     private InquiryMapper inquiryMapper;
 
+    /**
+     * 문의 데이터를 저장한다.
+     */
     @Override
     public Inquiry addItem(Inquiry input) throws Exception {
         int rows = 0;
@@ -35,6 +38,9 @@ public class InquiryServiceImpl implements InquiryService {
         return inquiryMapper.selectItem(input);
     }
 
+    /**
+     * 문의 데이터를 수정한다.
+     */
     @Override
     public Inquiry editItem(Inquiry input) throws Exception {
         int rows = 0;
@@ -53,6 +59,9 @@ public class InquiryServiceImpl implements InquiryService {
         return inquiryMapper.selectItem(input);
     }
 
+    /**
+     * 문의 데이터를 삭제한다.
+     */
     @Override
     public int deleteItem(Inquiry input) throws Exception {
         int rows = 0;
@@ -71,6 +80,9 @@ public class InquiryServiceImpl implements InquiryService {
         return rows;
     }
 
+    /**
+     * 문의 데이터를 단일 조회한다.
+     */
     @Override
     public Inquiry getItem(Inquiry input) throws Exception {
         Inquiry output = null;
@@ -89,6 +101,9 @@ public class InquiryServiceImpl implements InquiryService {
         return output;
     }
 
+    /**
+     * 문의 데이터를 목록 조회한다.
+     */
     @Override
     public List<Inquiry> getList(Inquiry input) throws Exception {
         List<Inquiry> output = null;
@@ -103,6 +118,9 @@ public class InquiryServiceImpl implements InquiryService {
         return output;
     }
 
+    /**
+     * 문의 데이터를 수를 조회한다.
+     */
     @Override
     public int getCount(Inquiry input) throws Exception {
         int output = 0;

@@ -17,6 +17,9 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberMapper memberMapper;
 
+    /**
+     * 회원 데이터를 저장한다.
+     */
     @Override
     public Member addItem(Member input) throws Exception {
         int rows = 0;
@@ -35,6 +38,9 @@ public class MemberServiceImpl implements MemberService {
         return memberMapper.selectItem(input);
     }
 
+    /**
+     * 회원 데이터를 수정한다.
+     */
     @Override
     public Member editItem(Member input) throws Exception {
         int rows = 0;
@@ -53,6 +59,9 @@ public class MemberServiceImpl implements MemberService {
         return memberMapper.selectItem(input);
     }
 
+    /**
+     * 회원 데이터를 삭제한다.
+     */
     @Override
     public int deleteItem(Member input) throws Exception {
         int rows = 0;
@@ -71,6 +80,9 @@ public class MemberServiceImpl implements MemberService {
         return rows;
     }
 
+    /**
+     * 회원 데이터를 단일 조회한다.
+     */
     @Override
     public Member getItem(Member input) throws Exception {
         Member output = null;
@@ -89,6 +101,9 @@ public class MemberServiceImpl implements MemberService {
         return output;
     }
 
+    /**
+     * 회원 데이터를 목록 조회한다.
+     */
     @Override
     public List<Member> getList(Member input) throws Exception {
         List<Member> output = null;
@@ -103,6 +118,9 @@ public class MemberServiceImpl implements MemberService {
         return output;
     }
 
+    /**
+     * 회원 데이터를 수를 조회한다.
+     */
     @Override
     public int getCount(Member input) throws Exception {
         int output = 0;

@@ -17,6 +17,9 @@ public class InquiryFileServiceImpl implements InquiryFileService {
     @Autowired
     private InquiryFileMapper inquiryFileMapper;
 
+    /**
+     * 문의 파일 데이터를 저장한다.
+     */
     @Override
     public InquiryFile addItem(InquiryFile input) throws Exception {
         int rows = 0;
@@ -35,6 +38,9 @@ public class InquiryFileServiceImpl implements InquiryFileService {
         return inquiryFileMapper.selectItem(input);
     }
 
+    /**
+     * 문의 파일 데이터를 수정한다.
+     */
     @Override
     public InquiryFile editItem(InquiryFile input) throws Exception {
         int rows = 0;
@@ -53,6 +59,9 @@ public class InquiryFileServiceImpl implements InquiryFileService {
         return inquiryFileMapper.selectItem(input);
     }
 
+    /**
+     * 문의 파일 데이터를 삭제한다.
+     */
     @Override
     public int deleteItem(InquiryFile input) throws Exception {
         int rows = 0;
@@ -71,6 +80,9 @@ public class InquiryFileServiceImpl implements InquiryFileService {
         return rows;
     }
 
+    /**
+     * 문의 파일 데이터를 단일 조회한다.
+     */
     @Override
     public InquiryFile getItem(InquiryFile input) throws Exception {
         InquiryFile output = null;
@@ -89,6 +101,9 @@ public class InquiryFileServiceImpl implements InquiryFileService {
         return output;
     }
 
+    /**
+     * 문의 파일 데이터를 목록 조회한다.
+     */
     @Override
     public List<InquiryFile> getList(InquiryFile input) throws Exception {
         List<InquiryFile> output = null;
@@ -103,6 +118,9 @@ public class InquiryFileServiceImpl implements InquiryFileService {
         return output;
     }
 
+    /**
+     * 문의 파일 데이터를 수를 조회한다.
+     */
     @Override
     public int getCount(InquiryFile input) throws Exception {
         int output = 0;
