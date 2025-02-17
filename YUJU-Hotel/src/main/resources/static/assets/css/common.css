@@ -1,6 +1,0 @@
-/* 공통 폰트 적용 - pretendard */
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
-
-html, body, div, span, input, button, select, textarea {
-  font-family: 'pretendard';
-}
