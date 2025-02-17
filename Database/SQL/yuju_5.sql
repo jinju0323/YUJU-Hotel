@@ -52,7 +52,7 @@ CREATE TABLE `inquiries` (
   `member_id` int DEFAULT NULL COMMENT '회원ID',
   `subject` varchar(255) NOT NULL COMMENT '제목',
   `message` text NOT NULL COMMENT '내용',
-  `status` enum('PENDING','ANSWERED') DEFAULT 'PENDING' COMMENT '상태',
+  `status` enum('대기중','답변완료') NOT NULL DEFAULT '대기중' COMMENT '상태',
   `reply` text COMMENT '답변',
   `reg_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록일자',
   `edit_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '변경일자',
@@ -116,7 +116,7 @@ CREATE TABLE `members` (
   `reg_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록 일자',
   `edit_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '수정 일자',
   PRIMARY KEY (`member_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='회원';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='회원';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +125,7 @@ CREATE TABLE `members` (
 
 LOCK TABLES `members` WRITE;
 /*!40000 ALTER TABLE `members` DISABLE KEYS */;
-INSERT INTO `members` VALUES (1,'박지민 (수정)','yujin.kim@test.com','updatedPass!456','N','2025-02-17 14:17:09','2025-02-17 14:46:57'),(3,'박지민','jimin.park@test.com','testPass!123','N','2025-02-17 14:46:43','2025-02-17 14:46:43');
+INSERT INTO `members` VALUES (1,'박지민 (수정)','yujin.kim@test.com','updatedPass!456','N','2025-02-17 14:17:09','2025-02-17 14:46:57'),(3,'박지민','jimin.park@test.com','testPass!123','N','2025-02-17 14:46:43','2025-02-17 14:46:43'),(4,'이수아 (수정)','sua.lee@test.com','newPass123!','N','2025-02-17 16:03:19','2025-02-17 16:03:51');
 /*!40000 ALTER TABLE `members` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,7 +170,7 @@ CREATE TABLE `payments` (
   `reservation_id` int NOT NULL COMMENT '예약ID',
   `member_id` int NOT NULL COMMENT '회원ID',
   `amount` int NOT NULL COMMENT '결제금액',
-  `status` enum('PENDING','COMPLETED','FAILED') DEFAULT 'PENDING' COMMENT '결제상태',
+  `status` enum('결제대기','결제완료','결제실패') NOT NULL DEFAULT '결제대기' COMMENT '결제상태',
   `payment_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `reg_date` datetime NOT NULL COMMENT '등록일자',
   `edit_date` datetime NOT NULL COMMENT '변경일자',
@@ -205,7 +205,7 @@ CREATE TABLE `reservations` (
   `check_in_date` date NOT NULL COMMENT '체크인',
   `check_out_date` date NOT NULL COMMENT '체크아웃',
   `total_price` int NOT NULL COMMENT '총금액',
-  `status` enum('PENDING','CONFIRMED','CANCELLED') DEFAULT 'PENDING' COMMENT '예약상태',
+  `status` enum('대기중','예약확정','예약취소') NOT NULL DEFAULT '대기중' COMMENT '예약상태',
   `reserved_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '예약일자',
   `reg_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록일자',
   `edit_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '변경일자',
@@ -351,4 +351,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-02-17 15:48:22
+-- Dump completed on 2025-02-17 16:37:50
