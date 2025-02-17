@@ -14,9 +14,19 @@ public interface NoticeMapper {
      * @return
      */
     @Insert(
-        "INSERT INTO notices (member_id, title, content, reg_date, edit_date)\n" +
-        "SELECT #{memberId}, #{title}, #{content}, NOW(), NOW()\n" +
-        "FROM members WHERE member_id = #{memberId} AND admin = 'Y'"
+        "INSERT INTO notices (" + 
+            "member_id, " + 
+            "title, " + 
+            "content, " + 
+            "reg_date, " + 
+            "edit_date" + 
+        ") VALUES (" + 
+            "#{memberId}, " + 
+            "#{title}, " + 
+            "#{content}, " + 
+            "NOW(), " + 
+            "NOW()" + 
+        ")"
     )
     @Options(useGeneratedKeys = true, keyProperty = "noticeId", keyColumn = "notice_id")
     public int insert(Notice input);
@@ -27,10 +37,13 @@ public interface NoticeMapper {
      * @return
      */
     @Update(
-        "UPDATE notices SET title = #{title}, content = #{content}, edit_date = NOW()\n" +
-        "WHERE notice_id = #{noticeId}\n" +
-        "AND member_id = #{memberId}\n" +
-        "AND EXISTS (SELECT 1 FROM members WHERE member_id = #{memberId} AND admin = 'Y')"
+        "UPDATE notices AS n " +
+        "JOIN members AS m ON n.member_id = m.member_id " +
+        "SET n.title = #{title}, " +
+        "n.content = #{content}, " +
+        "n.edit_date = NOW() " +
+        "WHERE n.notice_id = #{noticeId} " +
+        "AND m.admin = 'Y'"
     )
     public int update(Notice input);
 
@@ -40,10 +53,10 @@ public interface NoticeMapper {
      * @return
      */
     @Delete(
-        "DELETE FROM notices\n" +
-        "WHERE notice_id = #{noticeId}\n" +
-        "AND member_id = #{memberId}\n" +
-        "AND EXISTS (SELECT 1 FROM members WHERE member_id = #{memberId} AND admin = 'Y')"
+        "DELETE n FROM notices AS n " +
+        "JOIN members AS m ON n.member_id = m.member_id " +
+        "WHERE n.notice_id = #{noticeId} " +
+        "AND m.admin = 'Y'"
     )
     public int delete(Notice input);
 
@@ -53,7 +66,8 @@ public interface NoticeMapper {
      * @return
      */
     @Select(
-        "SELECT * FROM notices WHERE notice_id = #{noticeId}"
+        "SELECT * FROM notices " + 
+        "WHERE notice_id = #{noticeId}"
     )
     @Results(id="noticeResultMap", value={
         @Result(property="noticeId", column="notice_id"),
@@ -70,7 +84,9 @@ public interface NoticeMapper {
      * @param input
      * @return
      */
-    @Select("SELECT * FROM notices")
+    @Select(
+        "SELECT * FROM notices"
+    )
     @ResultMap("noticeResultMap")
     public List<Notice> selectList(Notice input);
 
@@ -79,6 +95,9 @@ public interface NoticeMapper {
      * @param input
      * @return
      */
-    @Select("SELECT COUNT(*) FROM notices")
+    @Select(
+        "SELECT COUNT(*) FROM notices"
+    )
     public int selectCount(Notice input);
 }
+
