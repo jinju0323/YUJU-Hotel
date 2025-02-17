@@ -7,7 +7,7 @@ import lombok.Setter;
 @Data
 public class Member {
     private int memberId;    // 회원ID
-    private String username; // 이름
+    private String userName; // 이름
     private String userId;   // 아이디
     private String userPw;   // 비밀번호
     private String admin;    // 관리자 여부 (Y/N)
