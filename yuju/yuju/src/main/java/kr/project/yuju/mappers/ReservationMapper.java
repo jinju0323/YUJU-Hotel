@@ -32,7 +32,17 @@ public interface ReservationMapper {
     int insertReservation(Reservation input);
 
     /** ✅ 특정 예약 정보 조회 */
-    @Select("SELECT * " +
+    @Select("SELECT " +
+            "reservation_id, " +
+            "member_id, " +
+            "room_id, " +
+            "check_in_date, " +
+            "check_out_date, " +
+            "total_price, " +
+            "status, " +
+            "reserved_at, " +
+            "reg_date, " +
+            "edit_date " +
             "FROM reservations " +
             "WHERE reservation_id = #{reservationId}")
     @Results(id = "reservationResultMap", value = {
@@ -50,7 +60,17 @@ public interface ReservationMapper {
     Reservation selectReservation(@Param("reservationId") int reservationId);
 
     /** ✅ 회원 ID로 예약 조회 */
-    @Select("SELECT * " +
+    @Select("SELECT " +
+            "reservation_id, " +
+            "member_id, " +
+            "room_id, " +
+            "check_in_date, " +
+            "check_out_date, " +
+            "total_price, " +
+            "status, " +
+            "reserved_at, " +
+            "reg_date, " +
+            "edit_date " +
             "FROM reservations " +
             "WHERE member_id = #{memberId} " +
             "ORDER BY check_in_date DESC")
@@ -58,7 +78,17 @@ public interface ReservationMapper {
     List<Reservation> selectByMemberId(@Param("memberId") int memberId);
 
     /** ✅ 객실 ID로 예약 조회 (객실 예약 현황 확인용) */
-    @Select("SELECT * " +
+    @Select("SELECT " +
+            "reservation_id, " +
+            "member_id, " +
+            "room_id, " +
+            "check_in_date, " +
+            "check_out_date, " +
+            "total_price, " +
+            "status, " +
+            "reserved_at, " +
+            "reg_date, " +
+            "edit_date " +
             "FROM reservations " +
             "WHERE room_id = #{roomId} " +
             "ORDER BY check_in_date ASC")
@@ -66,7 +96,7 @@ public interface ReservationMapper {
     List<Reservation> selectByRoomId(@Param("roomId") int roomId);
     
     /** ✅ 전체 예약 개수 조회 */
-    @Select("SELECT COUNT(*) " +
+    @Select("SELECT COUNT(reservation_id) " +
             "FROM reservations")
     int selectCount();
 }
