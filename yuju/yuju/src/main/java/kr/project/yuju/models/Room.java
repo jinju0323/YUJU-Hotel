@@ -16,8 +16,6 @@ public class Room implements Serializable {
     private int capacity;            // 최대 수용 인원
     private String description;      // 객실 설명
     private boolean isAvailable;     // 객실 사용 가능 여부 (true = 사용 가능, false = 사용 불가능)
-    private String breakfast;        // 조식 옵션 (1 = 1부, 2 = 2부, NULL= 조식 이용x)
-    private Integer breakfastPrice;  // 조식 가격 
     private LocalDateTime regDate;   // 등록 날짜
     private LocalDateTime editDate;  // 수정 날짜
 
@@ -29,4 +27,5 @@ public class Room implements Serializable {
     @Getter
     @Setter
     private static int offset = 0;
+
 }
