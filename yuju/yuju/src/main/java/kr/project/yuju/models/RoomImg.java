@@ -23,4 +23,11 @@ public class RoomImg implements Serializable {
     @Getter
     @Setter
     private static int offset = 0;
+
+    public RoomImg() {}
+    
+    public RoomImg(int roomId, String imgUrl) {
+        this.roomId = roomId;
+        this.imgUrl = imgUrl;
+    }
 }
