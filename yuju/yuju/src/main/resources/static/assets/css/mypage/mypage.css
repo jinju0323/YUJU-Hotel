@@ -1,0 +1,89 @@
+/* 전체 페이지 배경 */
+.mypage-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  min-height: 100vh; /* ✅ 최소 높이 설정 */
+}
+
+/* 마이페이지 컨테이너 */
+.mypage-container {
+  display: flex;
+  background-color: #fff;
+  max-width: 1200px; /* ✅ 중앙 1200px 제한 */
+  width: 100%;
+  min-height: 90vh;
+  border-radius: 10px; /* ✅ 둥근 모서리 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* ✅ 그림자 추가 */
+  overflow: hidden; /* ✅ 내부 요소가 넘치지 않도록 */
+}
+
+/* 사이드바 */
+.sidebar {
+  width: 250px;
+  background: #fff;
+  padding: 2rem;
+  border-right: 1px solid #ddd;
+  flex-shrink: 0; /* ✅ 크기 고정 */
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+    li {
+      margin-bottom: 1rem;
+
+      a {
+        text-decoration: none;
+        color: #333;
+        font-size: 1rem;
+        transition: color 0.3s;
+
+        &:hover,
+        &.active {
+          color: #007bff;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+/* ✅ 반응형: 태블릿 (768px 이하) */
+@media (max-width: 768px) {
+  .mypage-container {
+    flex-direction: column;
+    box-shadow: none; /* ✅ 작은 화면에서는 그림자 제거 */
+    border-radius: 0; /* ✅ 둥근 모서리 제거 */
+  }
+
+  .sidebar {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    padding: 1rem;
+
+    ul {
+      flex-direction: row;
+      justify-content: center;
+      gap: 2rem;
+    }
+  }
+}
+
+/* ✅ 반응형: 모바일 (480px 이하) */
+@media (max-width: 480px) {
+  .sidebar {
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -4,47 +4,52 @@
     <th:block
       th:replace="~{fragments/head :: common-head('마이페이지 - 예약내역')}"
     />
-    <link rel="stylesheet" th:href="@{/assets/css/common.css}" />
-    <link rel="stylesheet" th:href="@{/assets/css/header.css}" />
     <th:block th:replace="~{/fragments/header :: common-header}" />
-    <link rel="stylesheet" th:href="@{/assets/css/footer.css}" />
     <link
       rel="stylesheet"
       th:href="@{/assets/css/mypage/reservation_list.css}"
     />
   </head>
   <body>
-    <div class="mypage-container">
-      <aside class="sidebar">
-        <h2>마이페이지</h2>
-        <ul>
-          <li class="active">
-            <a th:href="@{/mypage/reservation_list}">예약 내역</a>
-          </li>
-          <li><a th:href="@{/mypage/change_password}">비밀번호 변경</a></li>
-          <li><a th:href="@{/mypage/delete_account}">회원 탈퇴</a></li>
-        </ul>
-      </aside>
+    <div class="mypage-wrapper">
+      <div class="mypage-container">
+        <!-- 사이드바 -->
+        <aside class="sidebar">
+          <h2>마이페이지</h2>
+          <ul>
+            <li class="active">
+              <a th:href="@{/mypage/reservation_list}">예약 내역</a>
+            </li>
+            <li><a th:href="@{/mypage/change_password}">비밀번호 변경</a></li>
+            <li><a th:href="@{/mypage/delete_account}">회원 탈퇴</a></li>
+          </ul>
+        </aside>
 
-      <main class="content">
-        <h2>예약 내역</h2>
-        <div class="search-box">
-          <label for="start-date">시작일</label>
-          <input type="date" id="start-date" />
-          <label for="end-date">종료일</label>
-          <input type="date" id="end-date" />
-          <button class="btn-search">조회</button>
-        </div>
+        <!-- 예약 내역 -->
+        <main class="content">
+          <h2>예약 내역</h2>
+          <div class="search-box">
+            <label for="start-date">시작일</label>
+            <input type="date" id="start-date" />
+            <label for="end-date">종료일</label>
+            <input type="date" id="end-date" />
+            <button class="btn-search">조회</button>
+          </div>
 
-        <div class="reservation-list">
-          <p class="empty-message">예약 내역이 없습니다.</p>
-        </div>
-      </main>
+          <div class="reservation-list">
+            <p class="empty-message">예약 내역이 없습니다.</p>
+          </div>
+        </main>
+      </div>
     </div>
-    <footer>
-      <th:block th:replace="~{/fragments/footer :: common-footer}" />
-    </footer>
+
+    <!-- 공통 footer -->
+    <th:block th:replace="~{/fragments/footer :: common-footer}" />
+
+    <!-- 공통 스크립트 -->
     <th:block th:replace="~{/fragments/scripts :: common-scripts}" />
+
+    <!-- 예약 내역 스크립트 -->
     <script src="/assets/js/mypage/reservation_list.js"></script>
   </body>
 </html>
