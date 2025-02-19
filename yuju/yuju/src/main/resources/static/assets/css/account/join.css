@@ -3,9 +3,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 70vh;
   background-color: #f8f9fa;
-  min-height: 100vh; /* ✅ footer와 겹치지 않도록 수정 */
+  min-height: 70vh; /* ✅ footer와 겹치지 않도록 수정 */
 
   .join-form {
     background: #fff;
@@ -43,7 +43,6 @@
         }
 
         .btn-secondary {
-          padding: 0.4rem 0.8rem;
           font-size: 0.8rem;
           white-space: nowrap;
           width: auto;
@@ -62,6 +61,32 @@
         &:focus {
           border-color: #007bff;
           outline: none;
+        }
+      }
+
+      /* ✅ 비밀번호 토글 버튼 스타일 */
+      .input-group {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        input {
+          flex: 1;
+          padding-right: 40px; /* 아이콘 공간 확보 */
+        }
+
+        .toggle-password {
+          position: absolute;
+          right: 10px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          font-size: 1.2rem;
+          color: #ccc;
+
+          &:hover {
+            color: #007bff;
+          }
         }
       }
     }
@@ -88,8 +113,7 @@
     }
 
     .btn-secondary {
-      background-color: #6c757d;
-      padding: 0.4rem 0.8rem;
+      background-color: #ccc;
       font-size: 0.8rem;
       border-radius: 5px;
       cursor: pointer;

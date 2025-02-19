@@ -3,9 +3,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 70vh;
   background-color: #f8f9fa;
-  min-height: 100vh; /* ✅ footer와 겹치지 않도록 수정 */
+  min-height: 70vh; /* ✅ footer와 겹치지 않도록 수정 */
 
   .login-form {
     background: #fff;

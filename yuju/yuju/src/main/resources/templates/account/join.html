@@ -2,15 +2,9 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <head>
     <th:block th:replace="~{/fragments/head :: common-head('회원가입')}" />
-    <link rel="stylesheet" th:href="@{/assets/css/common.css}" />
-    <link rel="stylesheet" th:href="@{/assets/css/account/join.css}" />
-    <link rel="stylesheet" th:href="@{/assets/css/header.css}" />
     <link rel="stylesheet" th:href="@{/assets/css/footer.css}" />
     <th:block th:replace="~{/fragments/header :: common-header}" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{/assets/css/account/join.css}" />
   </head>
   <body>
     <div class="join-container">
@@ -28,7 +22,8 @@
                 placeholder="이메일을 입력해주세요"
                 required="required"
                 pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
-                title="올바른 이메일 형식을 입력해주세요. (예: example@email.com)" />
+                title="올바른 이메일 형식을 입력해주세요. (예: example@email.com)"
+              />
               <button type="button" class="btn btn-secondary">확인</button>
             </div>
             <small id="email-error" style="color: red; display: none"
@@ -38,15 +33,22 @@
 
           <div class="form-group">
             <label for="password">비밀번호</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              class="form-control"
-              placeholder="비밀번호를 입력해주세요"
-              required="required"
-              pattern="^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$"
-              title="비밀번호는 최소 8자 이상이며, 영문, 숫자, 특수문자를 포함해야 합니다." />
+            <div class="input-group">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-control"
+                placeholder="비밀번호를 입력해주세요"
+                required="required"
+                pattern="^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$"
+                title="비밀번호는 최소 8자 이상이며, 영문, 숫자, 특수문자를 포함해야 합니다."
+              />
+              <button type="button" class="toggle-password">
+                <i class="fas fa-eye"></i>
+                <!-- 눈 모양 아이콘 -->
+              </button>
+            </div>
           </div>
 
           <div class="form-group">
@@ -58,12 +60,13 @@
                 name="confirm-password"
                 class="form-control"
                 placeholder="비밀번호를 다시 입력해주세요"
-                required="required" />
-              <button type="button" class="btn btn-secondary">확인</button>
+                required="required"
+              />
+              <button type="button" class="toggle-password">
+                <i class="fas fa-eye"></i>
+                <!-- 눈 모양 아이콘 -->
+              </button>
             </div>
-            <small id="password-error" style="color: red; display: none"
-              >비밀번호가 일치하지 않습니다.</small
-            >
           </div>
 
           <div class="form-group">
@@ -76,17 +79,22 @@
               placeholder="이름을 입력해주세요"
               required="required"
               pattern="^[가-힣a-zA-Z]{2,20}$"
-              title="이름은 한글 또는 영문으로 2~20자 사이로 입력해야 합니다." />
+              title="이름은 한글 또는 영문으로 2~20자 사이로 입력해야 합니다."
+            />
           </div>
 
           <button type="submit" class="btn btn-primary">회원가입</button>
         </form>
       </div>
     </div>
-    <footer>
-      <th:block th:replace="~{/fragments/footer :: common-footer}" />
-    </footer>
 
+    <!-- 공통 footer -->
+    <th:block th:replace="~{/fragments/footer :: common-footer}" />
+
+    <!-- 공통 스크립트 -->
     <th:block th:replace="~{/fragments/scripts :: common-scripts}" />
+
+    <!-- 회원가입 스크립트 -->
+    <script th:src="@{/assets/js/account/join.js}"></script>
   </body>
 </html>
