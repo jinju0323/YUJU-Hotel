@@ -2,7 +2,6 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:replace="~{fragments/head :: common-head('관리자 페이지 - 매출현황')}" />
-    <link rel="stylesheet" th:href="@{/assets/css/common.css}" />
     <link rel="stylesheet" th:href="@{/assets/css/admin.css}" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
     <th:block th:replace="~{/fragments/header :: common-header}" />
@@ -42,10 +41,7 @@
         </div>
     </div>
 
-    <footer>
-        <th:block th:replace="~{/fragments/footer :: common-footer}" />
-    </footer>
-    
+    <th:block th:replace="~{/fragments/footer :: common-footer}" />
     <script src="/assets/js/admin.js"></script>
 </body>
 </html>
