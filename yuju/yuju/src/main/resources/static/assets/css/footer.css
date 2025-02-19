@@ -6,133 +6,141 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
 
-/* ✅ 1200px로 제한된 메인 컨테이너 */
-.footerMain {
-    width: 100%;
-    max-width: 1200px; 
-    display: flex;
-    flex-direction: column;
-}
+    /* ✅ 1200px로 제한된 메인 컨테이너 */
+    .footerMain {
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+        flex-direction: column;
 
-/* ✅ 푸터 상단: 로고, 네비게이션, SNS (가로 정렬) */
-.footerTop {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 100%;
-    flex-wrap: wrap;
-}
+        /* ✅ 푸터 상단: 로고, 네비게이션, SNS (가로 정렬) */
+        .footerTop {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            flex-wrap: wrap;
 
-/* ✅ 왼쪽: 로고 */
-.footerLogo {
-    flex: 1;
-}
+            /* ✅ 왼쪽: 로고 */
+            .footerLogo {
+                flex: 1;
+                text-align: left;
 
-.footerlogo-1 {
-    color: #007bff;
-    font-size: 32px;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
+                .footerlogo-1 {
+                    color: #007bff;
+                    font-size: 32px;
+                    font-weight: bold;
+                    letter-spacing: 2px;
+                }
+            }
 
-/* ✅ 중앙: 네비게이션 + 회사 정보 */
-.footerNav {
-    flex: 2;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+            /* ✅ 중앙: 네비게이션 + 회사 정보 */
+            .footerNav {
+                flex: 2;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
 
-.footerNav ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    margin-bottom: 10px;
+                    display: flex;
+                    justify-content: center;
+                    gap: 20px;
 
-.footerNav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-}
-.footerNav p {
-    margin: 5px 0;
-    line-height: 1.6;
-    display: block;
-}
+                    li {
+                        a {
+                            color: white;
+                            text-decoration: none;
+                            font-weight: bold;
+                            font-size: 14px;
+                        }
+                    }
+                }
 
-/* ✅ 오른쪽: SNS */
-.footerSNS {
-    flex: 1;
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
+                p {
+                    margin: 5px 0;
+                    line-height: 1.6;
+                    display: block;
+                }
+            }
 
-.footerSNS p {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+            /* ✅ 오른쪽: SNS */
+            .footerSNS {
+                flex: 1;
+                text-align: right;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
 
-.footerSNS-icons {
-    display: flex;
-    gap: 15px;
-}
+                p {
+                    font-size: 16px;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
 
-.footerSNS-icons a {
-    color: white;
-    font-size: 24px;
-    transition: color 0.3s;
-}
+                .footerSNS-icons {
+                    display: flex;
+                    gap: 15px;
 
-.footerSNS-icons a:hover {
-    color: #7886C7;
-}
+                    a {
+                        color: white;
+                        font-size: 24px;
+                        transition: color 0.3s;
 
-/* ✅ 푸터 하단 (Copyright) */
-.footerBottom {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding-top: 10px;
-    color: #bbb;
-    width: 100%;
+                        &:hover {
+                            color: #7886C7;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* ✅ 푸터 하단 (Copyright) */
+        .footerBottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 10px;
+            color: #bbb;
+            width: 100%;
+        }
+    }
 }
 
 /* ✅ 반응형: 태블릿 (768px 이하) */
 @media screen and (max-width: 768px) {
-    .footerTop {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
+    .footerContainer {
+        .footerMain {
+            .footerTop {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
 
-    .footerLogo {
-        text-align: center;
-        margin-bottom: 15px;
-    }
+                .footerLogo {
+                    text-align: center;
+                    margin-bottom: 15px;
+                }
 
-    .footerNav {
-        flex-basis: auto;
-    }
+                .footerNav {
+                    flex-basis: auto;
+                }
 
-    .footerSNS {
-        align-items: center;
-        text-align: center;
-        margin-top: 15px;
-    }
+                .footerSNS {
+                    align-items: center;
+                    text-align: center;
+                    margin-top: 15px;
 
-    .footerSNS-icons {
-        justify-content: center;
+                    .footerSNS-icons {
+                        justify-content: center;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -140,18 +148,26 @@
 @media screen and (max-width: 480px) {
     .footerContainer {
         padding: 30px 20px;
-    }
 
-    .footerlogo-1 {
-        font-size: 24px;
-    }
+        .footerMain {
+            .footerTop {
+                .footerLogo {
+                    .footerlogo-1 {
+                        font-size: 24px;
+                    }
+                }
 
-    .footerNav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
+                .footerNav {
+                    ul {
+                        flex-direction: column;
+                        gap: 10px;
+                    }
+                }
 
-    .footerSNS {
-        align-items: center;
+                .footerSNS {
+                    align-items: center;
+                }
+            }
+        }
     }
 }

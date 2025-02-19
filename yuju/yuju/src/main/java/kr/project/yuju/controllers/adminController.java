@@ -10,4 +10,12 @@ public class adminController {
     public String admin() {
         return "admin/admin";
     }
+    @GetMapping("/admin/reservations")
+    public String reservations() {
+        return "admin/reservations";
+    }
+    @GetMapping("/admin/rooms")
+    public String rooms() {
+        return "admin/rooms";
+    }
 }
