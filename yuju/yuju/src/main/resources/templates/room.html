@@ -2,13 +2,10 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <head>
     <th:block th:replace="~{/fragments/head :: common-head('객실소개')}" />
-    <link rel="stylesheet" th:href="@{/assets/css/header.css}" />
-    <link rel="stylesheet" th:href="@{/assets/css/footer.css}" />
     <link rel="stylesheet" th:href="@{/assets/css/room.css}" />
+    <th:block th:replace="~{/fragments/header :: common-header}" />
   </head>
   <body>
-    <th:block th:replace="~{/fragments/header :: common-header}" />
-
     <main class="room-container">
       <section class="room-intro">
         <h1>객실 소개</h1>
@@ -33,7 +30,8 @@
         </div>
       </section>
     </main>
-
-    <th:block th:replace="~{/fragments/footer :: common-footer}" />
+    <footer>
+      <th:block th:replace="~{/fragments/footer :: common-footer}" />
+    </footer>
   </body>
 </html>

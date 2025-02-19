@@ -1,64 +1,80 @@
 /* ✅ 푸터 전체 스타일 */
 .footerContainer {
-    background-color: #0c2340; 
+    background-color: #0c2340;
     color: white;
-    padding: 40px 80px;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* ✅ 푸터 내용 정렬 */
-.footer {
+/* ✅ 1200px로 제한된 메인 컨테이너 */
+.footerMain {
+    width: 100%;
+    max-width: 1200px; /* ✅ 내부 내용 최대 너비 제한 */
+    padding: 0 20px; /* 좌우 패딩 추가 */
+    display: flex;
+    flex-direction: column;
+}
+
+/* ✅ 푸터 상단: 로고, 네비게이션, SNS (가로 정렬) */
+.footerTop {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    width: 100%;
     flex-wrap: wrap;
 }
 
 /* ✅ 왼쪽: 로고 */
 .footerLogo {
-    display: flex;
-    align-items: center;
+    flex: 1;
 }
 
 .footerlogo-1 {
-    color:#007bff;
-    font-size: 50px; 
+    color: #007bff;
+    font-size: 32px;
     font-weight: bold;
     letter-spacing: 2px;
 }
 
-/* ✅ 중앙: 네비게이션 메뉴 */
-.footerMain {
+/* ✅ 중앙: 네비게이션 + 회사 정보 */
+.footerNav {
+    flex: 2;
     text-align: center;
-    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.footerMain ul {
+.footerNav ul {
     list-style: none;
     padding: 0;
-    margin: 0 0 10px 0;
+    margin-bottom: 10px;
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
-.footerMain ul li {
-    display: inline;
-}
-
-.footerMain ul li a {
+.footerNav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
     font-size: 14px;
 }
-
-.footerMain ul li a:hover {
-    text-decoration: underline;
+.footerNav p {
+    margin: 5px 0;
+    line-height: 1.6;
+    display: block;
 }
 
 /* ✅ 오른쪽: SNS */
 .footerSNS {
+    flex: 1;
     text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .footerSNS p {
@@ -79,36 +95,64 @@
 }
 
 .footerSNS-icons a:hover {
-    color: #7886C7; 
+    color: #7886C7;
 }
 
-/* ✅ 하단 저작권 */
-.footerEnd {
+/* ✅ 푸터 하단 (Copyright) */
+.footerBottom {
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     padding-top: 10px;
     color: #bbb;
+    width: 100%;
 }
 
-/* ✅ 반응형 (태블릿 & 모바일) */
+/* ✅ 반응형: 태블릿 (768px 이하) */
 @media screen and (max-width: 768px) {
-    .footer {
+    .footerTop {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
 
     .footerLogo {
-        margin-bottom: 20px;
+        text-align: center;
+        margin-bottom: 15px;
     }
-    .footerlogo-1{
-        font-size: 20px; 
+
+    .footerNav {
+        flex-basis: auto;
     }
 
     .footerSNS {
+        align-items: center;
         text-align: center;
-        margin-top: 20px;
+        margin-top: 15px;
+    }
+
+    .footerSNS-icons {
+        justify-content: center;
+    }
+}
+
+/* ✅ 반응형: 모바일 (480px 이하) */
+@media screen and (max-width: 480px) {
+    .footerContainer {
+        padding: 30px 20px;
+    }
+
+    .footerlogo-1 {
+        font-size: 24px;
+    }
+
+    .footerNav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .footerSNS {
+        align-items: center;
     }
 }

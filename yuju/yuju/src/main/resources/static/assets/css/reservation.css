@@ -1,7 +1,8 @@
 main {
     width: 80%;
-    margin: auto;
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 h1 {
@@ -71,6 +72,10 @@ h1 {
     background-color: #c9302c;
 }
 @media (max-width: 768px) {
+    main {
+        width: 90%;
+        max-width: 100%;
+    }
     h1 {
         font-size: 22px;
     }
@@ -100,6 +105,10 @@ h1 {
 }
 
 @media (max-width: 480px) {
+    main {
+        width: 90%;
+        max-width: 100%;
+    }
     h1 {
         font-size: 20px;
     }

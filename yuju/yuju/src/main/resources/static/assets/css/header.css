@@ -1,23 +1,32 @@
-/* ✅ 기본 스타일 */
+/* ✅ 헤더 컨테이너 */
 .headerContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
+    width: 100%;
     background-color: #f8f9fa;
     border-bottom: 2px solid #ddd;
+    display: flex;
+    justify-content: center; 
+}
+
+/* ✅ 헤더 내부 (1200px 고정) */
+.headerMain {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
 }
 
 /* ✅ 로고 스타일 */
 .logo {
+    text-decoration: none;
     display: flex;
     align-items: center;
-    text-decoration: none;
 }
 
 .logo-1 {
-    color:#007bff;
-    font-size: 32px; 
+    color: #007bff;
+    font-size: 32px;
     font-weight: bold;
     letter-spacing: 2px;
 }
@@ -25,13 +34,12 @@
 /* ✅ 네비게이션 메뉴 스타일 */
 .navbar {
     display: flex;
-    margin-left: auto; 
 }
 
 .navbarnav {
     list-style: none;
     display: flex;
-    gap: 20px; 
+    gap: 30px; 
     margin: 0;
     padding: 0;
 }
@@ -53,51 +61,34 @@
     color: #007bff;
 }
 
-/* ✅ 반응형: 화면 너비가 768px 이하일 때 (태블릿, 모바일) */
+/* ✅ 반응형: 태블릿 (768px 이하) */
 @media screen and (max-width: 768px) {
-    .headerContainer {
-        flex-direction: column; 
-        align-items: center;
-        padding: 10px 20px;
-    }
-
-    .navbar {
-        width: 100%;
-        text-align: center;
-        margin-top: 10px;
+    .headerMain {
+        max-width: 90%;
+        flex-direction: row;
     }
 
     .navbarnav {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .navItem {
-        width: 100%;
-    }
-
-    .navLink {
-        display: block;
-        width: 100%;
-        padding: 12px;
-        background-color: #f1f1f1;
-        border-radius: 5px;
-    }
-
-    .navLink:hover {
-        background-color: #007bff;
-        color: white;
+        gap: 20px;
     }
 }
 
 /* ✅ 반응형: 모바일 (480px 이하) */
 @media screen and (max-width: 480px) {
+    .headerMain {
+        width: 95%;
+    }
+
     .logo-1 {
         font-size: 24px;
     }
 
+    .navbarnav {
+        gap: 15px;
+    }
+
     .navLink {
         font-size: 14px;
-        padding: 10px;
+        padding: 8px;
     }
 }
