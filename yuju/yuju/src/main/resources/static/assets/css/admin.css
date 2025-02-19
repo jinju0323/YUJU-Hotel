@@ -1,15 +1,27 @@
 /* ✅ 관리자 페이지 컨테이너 */
 .admin-container {
     display: flex;
-    height: 100vh;
+    justify-content: center;  /* ✅ 가운데 정렬 */
     background-color: #f8f9fa;
     min-height: 100vh;
+    padding: 20px 0;
+}
+
+/* ✅ 메인 콘텐츠 래퍼 (1200px 제한) */
+.adminMain {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;  /* ✅ 최대 너비 설정 */
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 /* ✅ 사이드바 */
 .sidebar {
     width: 250px;
-    background: #fff;
+    background: #f8f9fa;
     padding: 2rem;
     border-right: 1px solid #ddd;
 }
@@ -59,8 +71,8 @@
 }
 
 /* ✅ 반응형 */
-@media (max-width: 768px) {
-    .admin-container {
+@media (max-width: 1024px) {
+    .adminMain {
         flex-direction: column;
     }
 
