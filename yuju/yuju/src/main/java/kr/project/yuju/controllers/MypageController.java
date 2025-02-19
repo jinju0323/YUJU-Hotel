@@ -15,4 +15,9 @@ public class MypageController {
     public String change_password() {
         return "/mypage/change_password";
     }
+
+    @GetMapping("/mypage/delete_account")
+    public String delete_account() {
+        return "/mypage/delete_account";
+    }
 }

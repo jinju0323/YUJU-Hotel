@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- 공통 head -->
+    <th:block
+      th:replace="~{fragments/head :: common-head('마이페이지 - 회원 탈퇴')}"
+    />
+    <!-- 공통 header -->
+    <th:block th:replace="~{/fragments/header :: common-header}" />
+    <!-- 해당 CSS -->
+    <link rel="stylesheet" th:href="@{/assets/css/mypage/delete_account.css}" />
+  </head>
+  <body>
+    <div class="mypage-container">
+      <!-- 사이드바 -->
+      <aside class="sidebar">
+        <h2>마이페이지</h2>
+        <ul>
+          <li><a th:href="@{/mypage/reservation_list}">예약 내역</a></li>
+          <li><a th:href="@{/mypage/change_password}">비밀번호 변경</a></li>
+          <li class="active">
+            <a th:href="@{/mypage/delete_account}">회원 탈퇴</a>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- 회원 탈퇴 내용 -->
+      <main class="content">
+        <section class="delete-info">
+          <h2>회원 탈퇴</h2>
+          <p><strong>회원 탈퇴 전, 아래 유의사항을 확인해 주세요.</strong></p>
+          <ul class="delete-warnings">
+            <li>탈퇴 후 14일간 재가입이 어려워요!</li>
+            <li>재가입 시 신규 회원 혜택이 제한될 수 있어요!</li>
+            <li>탈퇴한 이메일은 재사용이 어려워요!</li>
+            <li>개인정보 및 회원 정보, 서비스 이용 내역이 모두 삭제돼요!</li>
+          </ul>
+          <div class="confirm-check">
+            <input type="checkbox" id="confirm-warning" required />
+            <label for="confirm-warning"
+              >회원 탈퇴 유의사항을 확인했어요.</label
+            >
+          </div>
+        </section>
+
+        <!-- 회원 탈퇴 폼 -->
+        <form id="delete-account-form">
+          <div class="form-group">
+            <label for="password">비밀번호</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="비밀번호 입력"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="confirm-password">비밀번호 확인</label>
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              placeholder="비밀번호 다시 입력"
+              required
+            />
+          </div>
+
+          <div class="confirm-check">
+            <input
+              type="checkbox"
+              id="confirm-delete"
+              name="confirm-delete"
+              required
+            />
+            <label for="confirm-delete">정말로 탈퇴하시겠습니까?</label>
+          </div>
+
+          <button type="submit" class="btn-delete">탈퇴하기</button>
+        </form>
+      </main>
+    </div>
+
+    <!-- 공통 footer -->
+    <footer>
+      <th:block th:replace="~{/fragments/footer :: common-footer}" />
+    </footer>
+
+    <!-- 공통 스크립트 -->
+    <th:block th:replace="~{/fragments/scripts :: common-scripts}" />
+    <!-- 해당 JS -->
+    <script th:src="@{/assets/js/mypage/delete_account.js}"></script>
+  </body>
+</html>
