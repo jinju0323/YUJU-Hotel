@@ -5,117 +5,35 @@
     <link rel="stylesheet" th:href="@{/assets/css/header.css}" />
     <link rel="stylesheet" th:href="@{/assets/css/footer.css}" />
     <link rel="stylesheet" th:href="@{/assets/css/room.css}" />
-    <th:block th:replace="~{/fragments/header :: common-header}" />
   </head>
   <body>
-    <main>
-      <!-- ✅ 객실 선택 버튼 -->
-      <div class="room-selection">
-        <button class="room-type-btn" onclick="changeRoomType('Standard')">Standard</button>
-        <button class="room-type-btn" onclick="changeRoomType('Deluxe')">Deluxe</button>
-        <button class="room-type-btn" onclick="changeRoomType('Suite')">Suite</button>
-      </div>
+    <th:block th:replace="~{/fragments/header :: common-header}" />
 
-      <!-- ✅ 객실 카테고리 선택 버튼 -->
-      <div class="room-category">
-        <button class="category-btn active" onclick="changeCategory('A')">A</button>
-        <button class="category-btn" onclick="changeCategory('B')">B</button>
-        <button class="category-btn" onclick="changeCategory('C')">C</button>
-      </div>
+    <main class="room-container">
+      <section class="room-intro">
+        <h1>객실 소개</h1>
+        <p>최상의 편안함과 아름다운 전망을 제공하는 다양한 객실을 확인하세요.</p>
+      </section>
 
-      <h1 class="room-title" th:text="${room.roomType} + ' ' + ${room.roomCategory}">객실 이름</h1>
+      <section class="room-list">
+        <div class="room-item" th:each="room : ${roomList}">
+          <div class="room-image">
+            <img th:src="@{${room.imageUrl}}" alt="객실 이미지" />
+          </div>
+          <div class="room-info">
+            <h2 th:text="${room.roomType}">객실 유형</h2>
+            <p th:text="${room.description}">객실 설명</p>
+            <p><strong>가격:</strong> <span th:text="${room.pricePerNight}"></span> 원</p>
 
-      <div class="room-container">
-        <!-- ✅ Swiper (왼쪽) -->
-        <div class="room-swiper">
-          <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-              <!-- ✅ DB에서 가져온 이미지 리스트를 Swiper에 동적으로 추가 -->
-              <div class="swiper-slide" th:each="img : ${imageUrls}">
-                <img th:src="@{${img}}" alt="객실 이미지" />
-              </div>
-            </div>
-            <div class="swiper-pagination"></div>
+            <!-- ✅ 예약하기 버튼 -->
+            <a th:href="@{/reservation}" class="reserve-button">
+              예약하기
+            </a>
           </div>
         </div>
-
-        <!-- ✅ 객실 설명 (오른쪽) -->
-        <div class="room-description">
-          <h2 th:text="${room.description}">객실 설명</h2>
-          <p>최대 인원: <span th:text="${room.capacity}">2</span>명</p>
-          <p>가격: <span th:text="${#numbers.formatInteger(room.price, 3, 'COMMA')}"></span>원/1박</p>
-        </div>
-      </div>
+      </section>
     </main>
 
-    <footer>
-      <th:block th:replace="~{/fragments/footer :: common-footer}" />
-    </footer>
-
-    <th:block th:replace="~{/fragments/scripts :: common-scripts}" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
-    <script>
-      var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 1,
-        loop: true,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-        },
-      });
-
-      // ✅ 객실 유형 변경 (Standard, Deluxe, Suite)
-      function changeRoomType(roomType) {
-        document.querySelectorAll(".room-type-btn").forEach(btn => btn.classList.remove("active"));
-        document.querySelector(`.room-type-btn:nth-child(${roomType === 'Standard' ? 1 : roomType === 'Deluxe' ? 2 : 3})`).classList.add("active");
-
-        // ✅ 현재 선택된 카테고리 가져오기
-        let category = document.querySelector(".category-btn.active").textContent;
-
-        // ✅ AJAX 요청을 통해 새로운 객실 데이터 불러오기
-        fetch(`/rooms/${roomType}/${category}`)
-          .then(response => response.json())
-          .then(data => updateRoomDetails(data));
-      }
-
-      // ✅ 객실 카테고리 변경 (A, B, C)
-      function changeCategory(category) {
-        document.querySelectorAll(".category-btn").forEach(btn => btn.classList.remove("active"));
-        document.querySelector(`.category-btn:nth-child(${category === 'A' ? 1 : category === 'B' ? 2 : 3})`).classList.add("active");
-
-        // ✅ 현재 선택된 객실 타입 가져오기
-        let roomType = document.querySelector(".room-type-btn.active").textContent;
-
-        // ✅ AJAX 요청을 통해 새로운 객실 데이터 불러오기
-        fetch(`/rooms/${roomType}/${category}`)
-          .then(response => response.json())
-          .then(data => updateRoomDetails(data));
-      }
-
-      // ✅ 객실 정보 및 Swiper 이미지 업데이트
-      function updateRoomDetails(data) {
-        document.querySelector(".room-title").textContent = data.roomType + " " + data.roomCategory;
-        document.querySelector(".room-description h2").textContent = data.description;
-        document.querySelector(".room-description p span").textContent = data.capacity;
-        document.querySelector(".room-description p:nth-child(3) span").textContent = data.price.toLocaleString() + "원";
-
-        let swiperWrapper = document.querySelector(".swiper-wrapper");
-        swiperWrapper.innerHTML = "";
-
-        data.imageUrls.forEach(url => {
-          let slide = document.createElement("div");
-          slide.classList.add("swiper-slide");
-          slide.innerHTML = `<img src="${url}" alt="객실 이미지">`;
-          swiperWrapper.appendChild(slide);
-        });
-
-        swiper.update(); // Swiper 업데이트
-      }
-    </script>
+    <th:block th:replace="~{/fragments/footer :: common-footer}" />
   </body>
 </html>

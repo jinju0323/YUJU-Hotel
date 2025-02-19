@@ -1,58 +1,119 @@
-/* ✅ 객실 선택 버튼 스타일 */
-.room-selection {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    margin-bottom: 20px;
+/* ✅ 메인 컨테이너 */
+.room-container {
+    width: 80%;
+    margin: 50px auto;
+    text-align: center;
 }
 
-/* ✅ 객실 타입 버튼 (Standard, Deluxe, Suite) */
-.room-type-btn {
-    background-color: #f1f1f1;
-    border: none;
-    padding: 12px 24px;
-    font-size: 16px;
+/* ✅ 객실 소개 섹션 */
+.room-intro {
+    margin-bottom: 40px;
+}
+
+.room-intro h1 {
+    font-size: 2rem;
     font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    border-radius: 8px;
+    color: #222;
 }
 
-.room-type-btn:hover,
-.room-type-btn.active {
-    background-color: #007bff;
-    color: white;
+.room-intro p {
+    font-size: 1.1rem;
+    color: #555;
 }
 
-/* ✅ 객실 카테고리 버튼 (A, B, C) */
-.room-category {
-    display: flex;
-    justify-content: center;
+/* ✅ 객실 목록 스타일 */
+.room-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 20px;
+    justify-content: center;
+    align-items: stretch;
+}
+
+/* ✅ 객실 개별 카드 */
+.room-item {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.room-item:hover {
+    transform: translateY(-5px);
+}
+
+/* ✅ 객실 이미지 */
+.room-image {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.room-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ✅ 객실 정보 */
+.room-info {
+    padding: 20px;
+    text-align: left;
+}
+
+.room-info h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.room-info p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* ✅ 예약하기 버튼 */
+.reserve-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
     margin-top: 10px;
-}
-
-.room-category button {
-    background-color: #f1f1f1;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    border-radius: 8px;
-}
-
-.room-category button:hover,
-.room-category button.active {
-    background-color: #007bff;
+    background-color: #e63946;
     color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease-in-out;
 }
 
-/* ✅ 반응형: 모바일에서는 버튼 크기 조정 */
-@media screen and (max-width: 768px) {
-    .room-selection {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
+.reserve-button:hover {
+    background-color: #d62828;
+}
+
+/* ✅ 반응형 디자인 */
+@media (max-width: 768px) {
+    .room-container {
+        width: 90%;
+    }
+
+    .room-list {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .room-info {
+        padding: 15px;
+    }
+
+    .reserve-button {
+        padding: 10px;
+        font-size: 0.9rem;
     }
 }
