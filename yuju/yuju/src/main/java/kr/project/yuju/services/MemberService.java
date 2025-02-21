@@ -52,4 +52,12 @@ public interface MemberService {
      * @throws Exception
      */
     public int getCount(Member params) throws Exception;
+
+    /**
+     * 아이디(이메일) 중복검사를 수행한다.
+     * @param params
+     * @return
+     * @throws Exception
+     */
+    public void idCheck(String userId) throws Exception;
 }

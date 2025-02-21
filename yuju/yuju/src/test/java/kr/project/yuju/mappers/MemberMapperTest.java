@@ -25,7 +25,7 @@ public class MemberMapperTest {
         input.setUserName("이수아");
         input.setUserId("sua.lee@test.com");
         input.setUserPw("pass123!");
-        input.setAdmin("N");
+        input.setIsAdmin("N");
         
         int output = memberMapper.insert(input);
         assertTrue(output > 0);
@@ -42,7 +42,7 @@ public class MemberMapperTest {
         input.setMemberId(4);
         input.setUserName("이수아 (수정)");
         input.setUserPw("newPass123!");
-        input.setAdmin("N");
+        input.setIsAdmin("N");
         
         int output = memberMapper.update(input);
         assertTrue(output > 0);

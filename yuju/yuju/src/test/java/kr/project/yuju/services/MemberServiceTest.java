@@ -25,7 +25,7 @@ public class MemberServiceTest {
         input.setUserName("박지민");
         input.setUserId("jimin.park@test.com");
         input.setUserPw("testPass!123");
-        input.setAdmin("N");
+        input.setIsAdmin("N");
         
         Member output = memberService.addItem(input);
         assertNotNull(output);
@@ -39,7 +39,7 @@ public class MemberServiceTest {
         input.setMemberId(1);
         input.setUserName("박지민 (수정)");
         input.setUserPw("updatedPass!456");
-        input.setAdmin("N");
+        input.setIsAdmin("N");
         
         Member output = memberService.editItem(input);
         assertNotNull(output);

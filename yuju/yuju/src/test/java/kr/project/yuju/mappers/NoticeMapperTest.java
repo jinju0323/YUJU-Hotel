@@ -26,7 +26,7 @@ public class NoticeMapperTest {
         Member member = new Member();
         member.setMemberId(memberId);
         Member output = memberMapper.selectItem(member);
-        return output != null && "Y".equals(output.getAdmin());
+        return output != null && "Y".equals(output.getIsAdmin());
     }
 
     @Test

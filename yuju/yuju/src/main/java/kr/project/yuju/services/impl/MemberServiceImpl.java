@@ -134,4 +134,26 @@ public class MemberServiceImpl implements MemberService {
 
         return output;
     }
+
+    /**
+     * 아이디(이메일) 중복검사를 수행한다.
+     */
+    @Override
+    public void idCheck(String userId) throws Exception {
+        Member input = new Member();
+        input.setUserId(userId);
+
+        int output = 0;
+
+        try {
+            output = memberMapper.selectCount(input);
+
+            if (output > 0) {
+                throw new Exception("사용할 수 없는 아이디(이메일) 입니다.");
+            }
+        } catch (Exception e) {
+            log.error("아이디(이메일) 중복검사에 실패했습니다.", e);
+            throw e;
+        }
+    }
 }

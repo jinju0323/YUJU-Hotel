@@ -10,7 +10,9 @@ public class Member {
     private String userName; // 이름
     private String userId;   // 아이디
     private String userPw;   // 비밀번호
-    private String admin;    // 관리자 여부 (Y/N)
+    private String isOut;    // 탈퇴 여부 (Y/N)
+    private String isAdmin;  // 관리자 여부 (Y/N)
+    private String loginDate;// 최종 로그인 일자
     private String regDate;  // 등록 일자
     private String editDate; // 수정 일자
 

@@ -1,147 +1,156 @@
 /* 기본 스타일 */
-.join-container {
+.joinContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70vh;
+  height: 100vh; /* 화면 전체 높이 */
   background-color: #f8f9fa;
-  min-height: 70vh; /* ✅ footer와 겹치지 않도록 수정 */
+  padding: 2rem 0;
+  box-sizing: border-box; /* padding 포함하여 크기 조정 */
+}
 
-  .join-form {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    box-sizing: border-box;
-    text-align: center;
+.joinForm {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  text-align: center;
 
-    h2 {
-      font-size: 1.5rem;
+  h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 1.5rem;
+  }
+
+  .formGroup {
+    margin-bottom: 1rem;
+    text-align: left;
+
+    label {
       font-weight: bold;
-      color: #007bff;
-      margin-bottom: 1.5rem;
+      display: block;
+      margin-bottom: 0.5rem;
     }
 
-    .form-group {
-      margin-bottom: 1rem;
-      text-align: left;
-
-      label {
-        font-weight: bold;
-        display: block;
-        margin-bottom: 0.5rem;
-      }
-
-      .input-group {
-        display: flex;
-        gap: 0.5rem;
-
-        input {
-          flex: 1;
-        }
-
-        .btn-secondary {
-          font-size: 0.8rem;
-          white-space: nowrap;
-          width: auto;
-        }
-      }
+    .inputGroup {
+      display: flex;
+      gap: 0.5rem;
 
       input {
-        width: 100%;
-        padding: 0.75rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 1rem;
-        box-sizing: border-box;
-        transition: border 0.3s ease-in-out;
-
-        &:focus {
-          border-color: #007bff;
-          outline: none;
-        }
+        flex: 1;
       }
 
-      /* ✅ 비밀번호 토글 버튼 스타일 */
-      .input-group {
-        display: flex;
-        align-items: center;
-        position: relative;
-
-        input {
-          flex: 1;
-          padding-right: 40px; /* 아이콘 공간 확보 */
-        }
-
-        .toggle-password {
-          position: absolute;
-          right: 10px;
-          background: none;
-          border: none;
-          cursor: pointer;
-          font-size: 1.2rem;
-          color: #ccc;
-
-          &:hover {
-            color: #007bff;
-          }
-        }
+      .btnSecondary {
+        font-size: 0.8rem;
+        white-space: nowrap;
+        width: auto;
       }
     }
 
-    .btn {
-      display: block;
+    input {
       width: 100%;
       padding: 0.75rem;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
+      border: 1px solid #ccc;
       border-radius: 5px;
       font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s;
+      box-sizing: border-box;
+      transition: border 0.3s ease-in-out;
 
-      &:hover {
-        background-color: #007bff;
-      }
-
-      &:active {
-        background-color: #0056b3;
+      &:focus {
+        border-color: #007bff;
+        outline: none;
       }
     }
 
-    .btn-secondary {
-      background-color: #ccc;
+    /* 비밀번호 토글 버튼 스타일 */
+    .inputGroup {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      input {
+        flex: 1;
+        padding-right: 40px; /* 아이콘 공간 확보 */
+      }
+
+      .togglePassword {
+        position: absolute;
+        right: 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: #ccc;
+
+        &:hover {
+          color: #007bff;
+        }
+      }
+    }
+
+    /* 입력 예시 */
+    .inputEx {
       font-size: 0.8rem;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s;
-      white-space: nowrap;
-      width: auto;
+      color: #6c757d;
+    }
+  }
 
-      &:hover {
-        background-color: darken(#6c757d, 10%);
-      }
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover {
+      background-color: #007bff;
     }
 
-    small {
-      display: block;
-      margin-top: 0.5rem;
-      font-size: 0.875rem;
+    &:active {
+      background-color: #0056b3;
     }
+  }
+
+  .btnSecondary {
+    background-color: #ccc;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    white-space: nowrap;
+    width: auto;
+
+    &:hover {
+      background-color: darken(#6c757d, 10%);
+    }
+  }
+
+  small {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
   }
 }
 
-/* ✅ 반응형: 화면 너비가 768px 이하일 때 (태블릿, 모바일) */
+/* 반응형: 화면 너비가 768px 이하일 때 (태블릿, 모바일) */
 @media (max-width: 768px) {
-  .join-container {
-    .join-form {
+  .joinContainer {
+    padding: 1.5rem;
+
+    .joinForm {
       padding: 1.5rem;
       width: 90%;
 
-      .form-group {
+      .formGroup {
         label {
           font-size: 0.9rem;
         }
@@ -161,10 +170,13 @@
   }
 }
 
-/* ✅ 반응형: 모바일 (480px 이하) */
+/* 반응형: 모바일 (480px 이하) */
 @media (max-width: 480px) {
-  .join-container {
-    .join-form {
+  .joinContainer {
+    height: auto;
+    padding: 1rem;
+
+    .joinForm {
       padding: 1rem;
       width: 100%;
       border-radius: 0;
@@ -174,7 +186,7 @@
         font-size: 1.3rem;
       }
 
-      .form-group {
+      .formGroup {
         text-align: left;
 
         label {
