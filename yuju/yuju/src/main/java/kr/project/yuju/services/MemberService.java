@@ -60,4 +60,14 @@ public interface MemberService {
      * @throws Exception
      */
     public void idCheck(String userId) throws Exception;
+
+    /**
+     * 로그인 처리 (JWT 발급)
+     * @param userId
+     * @param userPw
+     * @return JWT 토큰 문자열
+     * @throws Exception 로그인 실패 시 예외 발생
+     */
+    public String login(String userId, String userPw) throws Exception;
+
 }

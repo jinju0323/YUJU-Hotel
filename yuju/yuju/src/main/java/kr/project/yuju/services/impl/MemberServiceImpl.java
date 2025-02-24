@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.project.yuju.mappers.MemberMapper;
 import kr.project.yuju.models.Member;
+import kr.project.yuju.security.JwtUtil;
 import kr.project.yuju.services.MemberService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +22,10 @@ public class MemberServiceImpl implements MemberService {
     // ✅ 비밀번호 암호화 적용
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    // ✅ JWT 토큰 생성 및 검증 유틸 클래스
+    @Autowired
+    private JwtUtil jwtUtil;
 
     /**
      * 회원 데이터를 저장한다.
@@ -163,5 +168,38 @@ public class MemberServiceImpl implements MemberService {
             log.error("아이디(이메일) 중복검사에 실패했습니다.", e);
             throw e;
         }
+    }
+
+    /**
+     * ✅ 로그인 처리 (JWT 발급)
+     * - userId로 DB 조회
+     * - 입력된 비밀번호와 DB에 저장된 해시된 비밀번호를 비교
+     * - 로그인 성공 시 JWT 토큰 발급
+     */
+    @Override
+    public String login(String userId, String userPw) {
+        Member input = new Member();
+        input.setUserId(userId);
+    
+        // ✅ [1] DB에서 userId 조회 (userId로 변경!)
+        Member member = memberMapper.selectItem(input);
+        if (member == null) {
+            log.warn("❌ 존재하지 않는 계정: {}", userId);
+            return null;
+        }
+    
+        // ✅ [2] 비밀번호 검증 (BCrypt 해싱 비교)
+        boolean isPasswordMatch = passwordEncoder.matches(userPw, member.getUserPw());
+    
+        // 🔥 [보안 개선] 비밀번호는 로그에 남기지 않음
+        log.debug("🔐 비밀번호 검증 결과: {}", isPasswordMatch ? "✅ 일치" : "❌ 불일치");
+    
+        if (!isPasswordMatch) {
+            log.warn("❌ 비밀번호 불일치 - userId: {}", userId);
+            return null;
+        }
+    
+        // ✅ [3] 로그인 성공 → JWT 발급 후 반환
+        return jwtUtil.generateToken(userId);
     }
 }
