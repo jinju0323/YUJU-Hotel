@@ -75,7 +75,7 @@ public interface MemberMapper {
                 "reg_date, " + 
                 "edit_date " + 
             "FROM members " + 
-            "WHERE member_id = #{memberId}")
+            "WHERE user_id = #{userId}") // 아이디(이메일)로 조회
     @Results(id="memberResultMap", value={
         @Result(property="memberId", column="member_id"),
         @Result(property="userName", column="user_name"),
