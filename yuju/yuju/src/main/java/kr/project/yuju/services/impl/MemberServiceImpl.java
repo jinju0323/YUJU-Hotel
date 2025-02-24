@@ -3,6 +3,7 @@ package kr.project.yuju.services.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.project.yuju.mappers.MemberMapper;
@@ -17,6 +18,10 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberMapper memberMapper;
 
+    // ✅ 비밀번호 암호화 적용
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     /**
      * 회원 데이터를 저장한다.
      */
@@ -25,6 +30,9 @@ public class MemberServiceImpl implements MemberService {
         int rows = 0;
 
         try {
+            // ✅ 비밀번호 암호화 후 저장
+            input.setUserPw(passwordEncoder.encode(input.getUserPw()));
+            
             rows = memberMapper.insert(input);
 
             if (rows == 0) {
