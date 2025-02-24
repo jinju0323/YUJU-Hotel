@@ -12,6 +12,7 @@ import kr.project.yuju.helpers.WebHelper;
 import kr.project.yuju.models.Member;
 import kr.project.yuju.services.MemberService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -33,7 +34,7 @@ public class AccountRestController {
     private WebHelper webHelper;
 
     @GetMapping("/api/account/id_check")
-    public Map<String, Object> getIdCheck(@RequestParam("user_id") String userId) {
+    public Map<String, Object> getIdCheck(@RequestParam("userId") String userId) {
         try {
             memberService.idCheck(userId);
         } catch (Exception e) {
@@ -43,12 +44,12 @@ public class AccountRestController {
         return restHelper.sendJson();
     }
     
-    @GetMapping("/api/account/join")
+    @PostMapping("/api/account/join")
     public Map<String, Object> join(
-        @RequestParam("user_id") String userId,
-        @RequestParam("user_pw") String userPw,
+        @RequestParam("userId") String userId,
+        @RequestParam("userPw") String userPw,
         @RequestParam("confirmPassword") String confirmPassword,
-        @RequestParam("user_name") String userName
+        @RequestParam("userName") String userName
     ) {
         try {
             // 아이디(이메일) 유효성 검사

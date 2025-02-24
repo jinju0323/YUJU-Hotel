@@ -12,15 +12,15 @@
         <h2>회원가입</h2>
 
         <!-- 회원가입 폼 -->
-        <form th:action="@{/account/join}" method="post">
+        <form id="joinForm" th:action="@{/api/account/join}" method="post">
           <!-- 아이디(이메일) -->
           <div class="formGroup">
-            <label for="user_id">아이디(이메일)</label>
+            <label for="userId">아이디(이메일)</label>
             <div class="inputGroup">
               <input
                 type="email"
-                id="user_id"
-                name="user_id"
+                id="userId"
+                name="userId"
                 class="formControl"
                 placeholder="yuju@email.com"
               />
@@ -38,12 +38,12 @@
 
           <!-- 비밀번호 -->
           <div class="formGroup">
-            <label for="password">비밀번호</label>
+            <label for="userPw">비밀번호</label>
             <div class="inputGroup">
               <input
                 type="password"
-                id="password"
-                name="password"
+                id="userPw"
+                name="userPw"
                 class="formControl"
                 placeholder="비밀번호를 입력해주세요"
               />
@@ -81,11 +81,11 @@
 
           <!-- 이름 -->
           <div class="formGroup">
-            <label for="name">이름</label>
+            <label for="userName">이름</label>
             <input
               type="text"
-              id="name"
-              name="name"
+              id="userName"
+              name="userName"
               class="formControl"
               placeholder="이름을 입력해주세요"
             />

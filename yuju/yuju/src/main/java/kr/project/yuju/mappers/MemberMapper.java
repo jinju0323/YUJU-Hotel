@@ -26,8 +26,8 @@ public interface MemberMapper {
                 "#{userName}, " + 
                 "#{userId}, " + 
                 "#{userPw}, " + 
-                "#{isOut}, " + 
-                "#{isAdmin}, " + 
+                "'N', " + 
+                "'N', " + 
                 "NOW(), " + 
                 "NOW(), " + 
                 "NOW()" + 
