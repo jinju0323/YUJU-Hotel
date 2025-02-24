@@ -15,3 +15,48 @@ document
     this.classList.toggle("fa-eye");
     this.classList.toggle("fa-eye-slash");
   });
+
+// ✅ [2] 로그인 폼 제출 이벤트
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault(); // 기본 제출 방지
+
+  try {
+    // ✅ [3] 아이디(이메일) 입력값 유효성 검사
+    regexHelper.value("#userId", "아이디(이메일)를 입력하세요.");
+    regexHelper.email("#userId", "아이디(이메일) 형식이 올바르지 않습니다.");
+
+    // ✅ [4] 비밀번호 입력값 유효성 검사
+    regexHelper.value("#userPw", "비밀번호를 입력하세요.");
+    regexHelper.password(
+      "#userPw",
+      "비밀번호는 8~20자의 영문 대소문자, 숫자, 특수문자로 입력해주세요."
+    );
+  } catch (e) {
+    await utilHelper.alertDanger(e.message);
+    e.element.focus();
+    return;
+  }
+
+  // ✅ [5] 로그인 폼 데이터 생성
+  const formData = new FormData(e.currentTarget);
+
+  try {
+    // ✅ [6] 서버에 로그인 요청
+    const data = await axiosHelper.postMultipart(
+      "/api/account/login",
+      formData
+    );
+
+    // ✅ [7] 로그인 성공 처리
+    if (data && data.token) {
+      localStorage.setItem("token", data.token); // ✅ JWT 토큰 저장
+      localStorage.setItem("userId", data.userId); // ✅ 사용자 ID 저장
+      await utilHelper.alertSuccess("로그인 성공! 메인 페이지로 이동합니다.");
+      window.location = "/"; // ✅ 메인 페이지 이동
+    } else {
+      await utilHelper.alertDanger("로그인 실패. 다시 시도해주세요.");
+    }
+  } catch (error) {
+    await utilHelper.alertDanger("서버와의 통신 중 오류가 발생했습니다.");
+  }
+});
