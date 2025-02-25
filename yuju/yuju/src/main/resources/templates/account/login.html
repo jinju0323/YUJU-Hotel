@@ -1,49 +1,58 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <head>
+    <!-- 공통 HEAD 요소 포함 (ex. 메타태그, CSS 링크 등) -->
     <th:block th:replace="~{/fragments/head :: common-head('로그인')}" />
+    <!-- 공통 HEADER 포함 -->
     <th:block th:replace="~{/fragments/header :: common-header}" />
+    <!-- 로그인 전용 CSS 추가 -->
     <link rel="stylesheet" th:href="@{/assets/css/account/login.css}" />
   </head>
   <body>
     <main>
-      <div class="login-container">
-        <div class="login-form">
+      <div class="loginContainer">
+        <div class="loginForm">
           <h2>로그인</h2>
+          <!-- 로그인 폼 (POST 요청으로 서버에 전달) -->
           <form id="loginForm" th:action="@{/api/account/login}" method="post">
-            <div class="form-group">
+            <div class="formGroup">
               <label for="userId">아이디(이메일)</label>
               <input
                 type="email"
                 id="userId"
                 name="userId"
-                class="form-control"
+                class="formControl"
                 placeholder="이메일을 입력해주세요"
                 required="required"
               />
             </div>
-            <div class="form-group">
+
+            <div class="formGroup">
               <label for="userPw">비밀번호</label>
-              <div class="password-wrapper">
+              <div class="passwordWrapper">
                 <input
                   type="password"
                   id="userPw"
                   name="userPw"
-                  class="form-control"
+                  class="formControl"
                   placeholder="비밀번호를 입력해주세요"
                   required="required"
                 />
+                <!-- 비밀번호 보기/숨기기 아이콘 -->
                 <i class="fa-solid fa-eye" id="togglePassword"></i>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary">로그인</button>
 
-            <div class="login-options">
-              <div class="remember-me">
-                <input type="checkbox" id="remember-me" name="remember-me" />
-                <label for="remember-me">아이디 저장</label>
+            <!-- 로그인 버튼 -->
+            <button type="submit" class="btn btnPrimary">로그인</button>
+
+            <!-- 로그인 옵션: 아이디 저장 & 회원가입 링크 -->
+            <div class="loginOptions">
+              <div class="rememberMe">
+                <input type="checkbox" id="rememberMe" name="rememberMe" />
+                <label for="rememberMe">아이디 저장</label>
               </div>
-              <div class="signup-link">
+              <div class="signupLink">
                 <a th:href="@{/join}">회원가입</a>
               </div>
             </div>
@@ -52,10 +61,14 @@
       </div>
     </main>
 
+    <!-- 공통 FOOTER 포함 -->
     <footer>
       <th:block th:replace="~{/fragments/footer :: common-footer}" />
     </footer>
+
+    <!-- 공통 스크립트 포함 -->
     <th:block th:replace="~{/fragments/scripts :: common-scripts}" />
+    <!-- 로그인 페이지용 JavaScript 추가 -->
     <script th:src="@{/assets/js/account/login.js}"></script>
   </body>
 </html>
