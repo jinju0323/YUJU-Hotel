@@ -2,127 +2,100 @@ package kr.project.yuju.services.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.project.yuju.mappers.RoomMapper;
 import kr.project.yuju.models.Room;
 import kr.project.yuju.services.RoomService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class RoomServiceImpl implements RoomService {
 
-    @Autowired
-    private RoomMapper roomMapper;
+    private final RoomMapper roomMapper;
 
-    /**
-     * ✅ 객실 추가
-     */
+    /** ✅ 객실 추가 */
     @Override
     public Room addItem(Room input) throws Exception {
-        int rows = 0;
-
         try {
-            rows = roomMapper.insertRoom(input);
-
+            int rows = roomMapper.insertRoom(input);
             if (rows == 0) {
-                throw new Exception("추가된 객실이 없습니다.");
+                throw new Exception("객실 추가에 실패하였습니다.");
             }
+            return roomMapper.selectItem(input.getRoomId());
         } catch (Exception e) {
-            log.error("객실 추가에 실패했습니다.", e);
+            log.error("객실 추가 실패", e);
             throw e;
         }
-
-        return roomMapper.selectItem(input);
     }
-    /** ✅ 객실 수정*/
 
+    /** ✅ 객실 수정 */
     @Override
-    public Room editItem(Room input) throws Exception {
-        int rows = 0;
-
+    public Room editItem(Room room) throws Exception {
         try {
-            rows = roomMapper.updateRoom(input);
-
+            int rows = roomMapper.updateRoom(room);
             if (rows == 0) {
-                throw new Exception("수정된 객실이 없습니다.");
+                throw new Exception("객실 수정에 실패하였습니다.");
             }
+            return roomMapper.selectItem(room.getRoomId());
         } catch (Exception e) {
-            log.error("객실 수정에 실패했습니다.", e);
+            log.error("객실 수정 실패", e);
             throw e;
         }
-
-        return roomMapper.selectItem(input);
     }
 
-    /** ✅ 객실 삭제*/
+    /** ✅ 객실 삭제 */
     @Override
-    public int deleteItem(Room input) throws Exception {
-        int rows = 0;
-
+    public int deleteItem(int roomId) throws Exception {
         try {
-            rows = roomMapper.deleteRoom(input);
-
+            int rows = roomMapper.deleteRoom(roomId);
             if (rows == 0) {
-                throw new Exception("삭제된 객실이 없습니다.");
+                throw new Exception("객실 삭제에 실패하였습니다.");
             }
+            return rows;
         } catch (Exception e) {
-            log.error("데이터 삭제에 실패했습니다.", e);
+            log.error("객실 삭제 실패", e);
             throw e;
         }
-
-        return rows;
     }
-    
-    /** ✅ 특정 객실 조회*/
+
+    /** ✅ 특정 객실 조회 */
     @Override
-    public Room getItem(Room input) throws Exception {
-        Room output = null;
-
+    public Room getItem(int roomId) throws Exception {
         try {
-            output = roomMapper.selectItem(input);
-
+            Room output = roomMapper.selectItem(roomId);
             if (output == null) {
-                throw new Exception("조회된 객실이 없습니다.");
+                throw new Exception("해당 ID의 객실이 존재하지 않습니다.");
             }
+            return output;
         } catch (Exception e) {
-            log.error("객실 조회에 실패했습니다.", e);
+            log.error("객실 조회 실패", e);
             throw e;
         }
-
-        return output;
     }
 
-    /** ✅ 객실 목록 조회*/
+    /** ✅ 객실 목록 조회 */
     @Override
-    public List<Room> getList(Room param) throws Exception {
-        List<Room> output = null;
-
+    public List<Room> getList() throws Exception {
         try {
-            output = roomMapper.selectList();
+            return roomMapper.selectList();
         } catch (Exception e) {
-            log.error("객실 목록 조회에 실패했습니다.", e);
+            log.error("객실 목록 조회 실패", e);
             throw e;
         }
-
-        return output;
     }
 
-    /** ✅ 객실 개수 조회*/
+    /** ✅ 객실 개수 조회 */
     @Override
-    public int getCount(Room param) throws Exception {
-        int output = 0;
-
+    public int getCount() throws Exception {
         try {
-            output = roomMapper.selectCountRoom();
+            return roomMapper.selectCountRoom();
         } catch (Exception e) {
-            log.error("객실 집계에 실패했습니다.", e);
+            log.error("객실 개수 조회 실패", e);
             throw e;
         }
-
-        return output;
     }
-    
 }

@@ -6,44 +6,42 @@ import kr.project.yuju.models.Room;
 public interface RoomService {
 
     /** ✅ 객실 추가 
-     * @param params
-     * @return
+     * @param room 객실 정보
+     * @return 추가된 객실
      * @throws Exception
      */
-    public Room addItem(Room params) throws Exception;
+    Room addItem(Room room) throws Exception;
 
     /** ✅ 객실 수정 
-     * @param params
-     * @return
+     * @param room 수정할 객실 정보
+     * @return 수정된 객실
      * @throws Exception
      */
-    public Room editItem(Room params) throws Exception;
+    Room editItem(Room room) throws Exception;
 
     /** ✅ 객실 삭제 
-     * @param params
-     * @return
+     * @param roomId 삭제할 객실 ID
+     * @return 삭제된 객실 수 (1이면 성공, 0이면 실패)
      * @throws Exception
      */
-    public int deleteItem(Room params) throws Exception;
+    int deleteItem(int roomId) throws Exception;
 
     /** ✅ 특정 객실 조회 
-     * @param params
-     * @return
+     * @param roomId 조회할 객실 ID
+     * @return 조회된 객실 정보
      * @throws Exception
      */
-    public Room getItem(Room params) throws Exception;
+    Room getItem(int roomId) throws Exception;
 
     /** ✅ 객실 목록 조회 
-     * @param params
-     * @return
-     *  @throws Exception
-     */
-    public List<Room> getList(Room params) throws Exception;
-
-    /** ✅ 객실 개수 조회 
-     * @param params
-     * @return
+     * @return 전체 객실 목록
      * @throws Exception
      */
-    public int getCount(Room params) throws Exception;
+    List<Room> getList() throws Exception;
+
+    /** ✅ 객실 개수 조회 
+     * @return 전체 객실 개수
+     * @throws Exception
+     */
+    int getCount() throws Exception;
 }

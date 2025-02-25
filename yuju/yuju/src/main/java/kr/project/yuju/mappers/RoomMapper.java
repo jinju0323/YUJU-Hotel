@@ -1,7 +1,6 @@
 package kr.project.yuju.mappers;
 
 import java.util.List;
-
 import org.apache.ibatis.annotations.*;
 
 import kr.project.yuju.models.Room;
@@ -44,20 +43,19 @@ public interface RoomMapper {
     int updateRoom(Room input);
 
     /** ✅ 객실 정보 삭제 */
-    @Delete("DELETE FROM rooms " +
-            "WHERE room_id = #{roomId}")
-    int deleteRoom(Room input);
+    @Delete("DELETE FROM rooms WHERE room_id = #{roomId}")
+    int deleteRoom(@Param("roomId") int roomId);
 
     /** ✅ 특정 객실 조회 */
-    @Select("SELECT  " +
-            "room_id,"+
-            "room_type,"+
-            "room_category,"+
-            "price_per_night,"+
-            "capacity,"+
-            "description,"+
-            "is_available,"+
-            "reg_date,"+
+    @Select("SELECT " +
+            "room_id, " +
+            "room_type, " +
+            "room_category, " +
+            "price_per_night, " +
+            "capacity, " +
+            "description, " +
+            "is_available, " +
+            "reg_date, " +
             "edit_date " +
             "FROM rooms " +
             "WHERE room_id = #{roomId}")
@@ -72,28 +70,25 @@ public interface RoomMapper {
         @Result(property = "regDate", column = "reg_date"),
         @Result(property = "editDate", column = "edit_date")
     })
-    Room selectItem(Room input);
+    Room selectItem(@Param("roomId") int roomId);
 
     /** ✅ 객실 목록 조회 */
-    @Select("SELECT  " +
-            "room_id,"+
-            "room_type,"+
-            "room_category,"+
-            "price_per_night,"+
-            "capacity,"+
-            "description,"+
-            "is_available,"+
-            "reg_date,"+
+    @Select("SELECT " +
+            "room_id, " +
+            "room_type, " +
+            "room_category, " +
+            "price_per_night, " +
+            "capacity, " +
+            "description, " +
+            "is_available, " +
+            "reg_date, " +
             "edit_date " +
             "FROM rooms " +
-            "ORDER BY room_type, " +
-            "room_category")
+            "ORDER BY room_type, room_category")
     @ResultMap("roomResultMap")
     List<Room> selectList();
 
     /** ✅ 객실 개수 조회 */
-    @Select("SELECT " +
-            "COUNT(room_id) " +
-            "FROM rooms")
+    @Select("SELECT COUNT(room_id) FROM rooms")
     int selectCountRoom();
 }

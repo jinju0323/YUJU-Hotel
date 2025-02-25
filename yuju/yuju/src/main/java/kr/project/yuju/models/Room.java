@@ -28,4 +28,5 @@ public class Room implements Serializable {
     @Setter
     private static int offset = 0;
 
+
 }
