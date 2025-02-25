@@ -32,8 +32,11 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
       "비밀번호는 8~20자의 영문 대소문자, 숫자, 특수문자로 입력해주세요."
     );
   } catch (e) {
+    // 유효성 검사 실패 시 에러 메시지 표시
     await utilHelper.alertDanger(e.message);
-    e.element.focus();
+
+    // 에러가 발생한 요소에 포커스를 맞춤
+    setTimeout(() => e.element.focus(), 300);
     return;
   }
 

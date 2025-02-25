@@ -12,8 +12,9 @@ document
     } catch (e) {
       // 유효성 검사 실패 시 에러 메시지 표시
       await utilHelper.alertDanger(e.message);
+
       // 에러가 발생한 요소에 포커스를 맞춤
-      e.element.focus();
+      setTimeout(() => e.element.focus(), 300);
       return;
     }
 
@@ -89,8 +90,11 @@ document.getElementById("joinForm").addEventListener("submit", async (e) => {
     regexHelper.kor("#userName", "이름은 한글로만 입력하세요.");
     regexHelper.minLength("#userName", 2, "이름은 최소 2자 이상 입력하세요.");
   } catch (e) {
+    // 유효성 검사 실패 시 에러 메시지 표시
     await utilHelper.alertDanger(e.message);
-    e.element.focus();
+
+    // 에러가 발생한 요소에 포커스를 맞춤
+    setTimeout(() => e.element.focus(), 300);
     return;
   }
 
