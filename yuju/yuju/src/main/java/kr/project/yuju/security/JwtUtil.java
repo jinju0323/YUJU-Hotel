@@ -37,7 +37,7 @@ public class JwtUtil {
                 .add("alg", "HS256") // ✅ 서명 알고리즘을 명시적으로 지정 (HMAC SHA-256)
             .and()
             .claims() // ✅ JWT에 저장할 클레임(Claim) 설정
-                .add("sub", userId)  // ✅ "sub" (subject) 필드에 사용자 ID 저장 (JWT 표준 클레임)
+                .add("userId", userId)  // ✅ 사용자 ID 저장 (JWT 표준 클레임 sub대신 userId로 명시시)
                 .add(Claims.ISSUED_AT, new Date())  // ✅ 토큰 발급 시간 (iat)
                 .add(Claims.EXPIRATION, new Date(System.currentTimeMillis() + EXPIRATION_TIME)) // ✅ 만료 시간 (exp)
             .and()
@@ -46,23 +46,49 @@ public class JwtUtil {
     }
 
     /**
-     * ✅ JWT 토큰 검증 (API 요청 시 실행)
-     * - 클라이언트가 보낸 JWT가 유효한지 확인하고, 사용자 ID를 반환
-     * - 서명이 유효하지 않거나 만료된 경우 `null` 반환
+     * ✅ JWT 토큰 검증 및 사용자 ID 추출 메서드
+     * 
+     * - 클라이언트가 API 요청 시, Authorization 헤더에 포함한 JWT의 유효성을 검사한다.
+     * - 서명이 유효하고 만료되지 않았다면, 토큰에서 "userId" 값을 추출하여 반환한다.
+     * - 서명이 잘못되었거나 만료된 경우, `null`을 반환하여 인증 실패 처리한다.
      *
-     * @param token - 클라이언트가 요청 헤더에 포함하여 보낸 JWT
+     * @param token 클라이언트가 요청 헤더에 포함하여 보낸 JWT
      * @return 유효한 경우 userId 반환, 유효하지 않으면 null 반환
      */
     public String validateToken(String token) {
         try {
-            return Jwts.parser()  // ✅ JWT 파서 객체 생성
-                    .verifyWith(key) // ✅ HMAC SHA-256 키를 사용하여 서명 검증
-                    .build()
-                    .parseSignedClaims(token) // ✅ 토큰을 파싱하고, 서명이 유효한 경우 Claims(페이로드) 반환
-                    .getPayload()
-                    .getSubject(); // ✅ "sub" 필드에 저장된 사용자 ID를 반환
-        } catch (JwtException e) {
-            return null;  // ⛔ 유효하지 않은 토큰이면 null 반환 (유효하지 않은 서명, 만료 등)
+            // ✅ JWT 파서를 생성하여 서명 검증을 진행
+            Claims claims = Jwts.parser()  // JWT 파서를 생성
+                    .verifyWith(key)  // SECRET_KEY를 이용하여 서명이 올바른지 검증
+                    .build()  // 빌더 패턴을 사용하여 파서 객체 생성
+                    .parseSignedClaims(token)  // 클라이언트가 보낸 JWT를 파싱하여 유효한 경우 Claims(페이로드) 반환
+                    .getPayload();  // ✅ Claims에서 실제 페이로드(payload) 부분만 추출
+
+            // ✅ "userId"라는 커스텀 클레임에서 값을 가져와 반환 (기본적으로 String 타입)
+            return claims.get("userId", String.class); 
+
+        } catch (ExpiredJwtException e) {
+            // ⛔ 토큰이 만료된 경우 예외 발생 (exp 시간이 지남)
+            System.out.println("JWT가 만료되었습니다: " + e.getMessage());
+            return null;
+        } catch (UnsupportedJwtException e) {
+            // ⛔ 지원되지 않는 JWT 형식일 경우 예외 발생
+            System.out.println("지원되지 않는 JWT 형식입니다: " + e.getMessage());
+            return null;
+        } catch (MalformedJwtException e) {
+            // ⛔ JWT가 올바르게 구성되지 않은 경우 예외 발생 (구조 오류)
+            System.out.println("JWT가 올바르지 않습니다: " + e.getMessage());
+            return null;
+        } catch (@SuppressWarnings("deprecation") SignatureException e) {
+            // ⛔ 서명이 잘못되었거나 변조된 경우 예외 발생
+            System.out.println("JWT 서명이 올바르지 않습니다: " + e.getMessage());
+            return null;
+        } catch (IllegalArgumentException e) {
+            // ⛔ JWT가 비어있거나 유효하지 않은 경우 예외 발생
+            System.out.println("JWT가 비어있거나 잘못된 값입니다: " + e.getMessage());
+            return null;
         }
     }
+
+    
 }

@@ -1,6 +1,7 @@
 package kr.project.yuju.services;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.project.yuju.models.Member;
 
@@ -68,6 +69,6 @@ public interface MemberService {
      * @return JWT 토큰 문자열
      * @throws Exception 로그인 실패 시 예외 발생
      */
-    public String login(String userId, String userPw) throws Exception;
+    public Map<String, Object> login(String userId, String userPw) throws Exception;
 
 }

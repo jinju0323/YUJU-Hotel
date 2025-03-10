@@ -1,6 +1,7 @@
 package kr.project.yuju.services.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -174,32 +175,38 @@ public class MemberServiceImpl implements MemberService {
      * ✅ 로그인 처리 (JWT 발급)
      * - userId로 DB 조회
      * - 입력된 비밀번호와 DB에 저장된 해시된 비밀번호를 비교
-     * - 로그인 성공 시 JWT 토큰 발급
+     * - 로그인 성공 시 JWT 토큰과 userId를 함께 반환
      */
     @Override
-    public String login(String userId, String userPw) {
+    public Map<String, Object> login(String userId, String userPw) {
         Member input = new Member();
         input.setUserId(userId);
-    
-        // ✅ [1] DB에서 userId 조회 (userId로 변경!)
+
+        // ✅ [1] DB에서 userId 조회
         Member member = memberMapper.selectItem(input);
         if (member == null) {
             log.warn("❌ 존재하지 않는 계정: {}", userId);
-            return null;
+            throw new RuntimeException("아이디 또는 비밀번호가 올바르지 않습니다.");
         }
-    
+
         // ✅ [2] 비밀번호 검증 (BCrypt 해싱 비교)
         boolean isPasswordMatch = passwordEncoder.matches(userPw, member.getUserPw());
-    
-        // 🔥 [보안 개선] 비밀번호는 로그에 남기지 않음
+
         log.debug("🔐 비밀번호 검증 결과: {}", isPasswordMatch ? "✅ 일치" : "❌ 불일치");
-    
+
         if (!isPasswordMatch) {
             log.warn("❌ 비밀번호 불일치 - userId: {}", userId);
-            return null;
+            throw new RuntimeException("아이디 또는 비밀번호가 올바르지 않습니다.");
         }
-    
-        // ✅ [3] 로그인 성공 → JWT 발급 후 반환
-        return jwtUtil.generateToken(userId);
+
+        // ✅ [3] 로그인 성공 → JWT 발급
+        String token = jwtUtil.generateToken(userId);
+
+        // ✅ [4] 토큰과 userId를 함께 반환 (Map 형식)
+        return Map.of(
+            "token", token,
+            "userId", userId
+        );
     }
+
 }

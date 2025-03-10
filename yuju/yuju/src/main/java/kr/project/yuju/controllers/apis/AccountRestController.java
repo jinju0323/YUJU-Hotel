@@ -113,27 +113,31 @@ public class AccountRestController {
     public Map<String, Object> login(
         @RequestParam("userId") String userId,
         @RequestParam("userPw") String userPw) {
-        
+
         try {
             // ✅ [1] 아이디(이메일) 유효성 검사
             regexHelper.isValue(userId, "아이디(이메일)를 입력하세요.");
             regexHelper.isEmail(userId, "아이디(이메일)의 형식이 잘못되었습니다.");
-        
+
             // ✅ [2] 비밀번호 유효성 검사
             regexHelper.isValue(userPw, "비밀번호를 입력하세요.");
             regexHelper.isPassword(userPw, "비밀번호는 영문, 숫자, 특수문자를 포함하여 8자 이상으로 입력하세요.");
         } catch (Exception e) {
-            // ⛔ [ERROR] 유효성 검사 실패 → 400 Bad Request 응답 반환
             return restHelper.badRequest(e);
         }
-    
+
         try {
-            // ✅ [3] 로그인 처리 (비밀번호 검증 & JWT 토큰 생성)
-            String token = memberService.login(userId, userPw); // 🔹 서비스에서 로그인 처리
-            return restHelper.sendJson(Map.of("token", token, "message", "로그인 성공"));
+            // ✅ [3] 로그인 처리 (토큰 & userId 함께 반환)
+            Map<String, Object> loginResult = memberService.login(userId, userPw);
+
+            return restHelper.sendJson(Map.of(
+                "token", loginResult.get("token"),
+                "userId", loginResult.get("userId"),
+                "message", "로그인 성공"
+            ));
         } catch (Exception e) {
-            // ⛔ [ERROR] 로그인 실패 → 400 Bad Request 응답 반환
             return restHelper.badRequest(e);
         }
     }
+
 }
