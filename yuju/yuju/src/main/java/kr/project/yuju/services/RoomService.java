@@ -43,5 +43,5 @@ public interface RoomService {
      * @return 전체 객실 개수
      * @throws Exception
      */
-    int getCount() throws Exception;
+    int getCount() throws Exception;     
 }

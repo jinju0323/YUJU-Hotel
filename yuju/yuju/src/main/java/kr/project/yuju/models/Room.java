@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class Room implements Serializable {
@@ -18,6 +20,9 @@ public class Room implements Serializable {
     private boolean isAvailable;     // 객실 사용 가능 여부 (true = 사용 가능, false = 사용 불가능)
     private LocalDateTime regDate;   // 등록 날짜
     private LocalDateTime editDate;  // 수정 날짜
+    
+     // ✅ 이미지 리스트 추가
+    private List<RoomImg> roomImgs = new ArrayList<>();
 
     // 리스트 페이지네이션을 위한 변수 추가
     @Getter
@@ -27,6 +32,4 @@ public class Room implements Serializable {
     @Getter
     @Setter
     private static int offset = 0;
-
-
 }
