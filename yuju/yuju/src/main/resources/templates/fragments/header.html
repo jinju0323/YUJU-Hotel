@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <th:block th:replace="~{/fragments/head :: common-head('헤더')}" />  
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <th:block th:replace="~{/fragments/head :: common-head('헤더')}" />
+  </head>
   <body>
     <header th:fragment="common-header">
       <div class="headerContainer">
@@ -13,13 +13,34 @@
           <a class="logo" href="/">
             <div class="logo-1">YUJU</div>
           </a>
-      
+
           <!-- ✅ 네비게이션 메뉴 -->
           <nav class="navbar">
             <ul class="navbarnav">
-              <li class="navItem"><a class="navLink" th:href="@{/room}">객실소개</a></li>
-              <li class="navItem"><a class="navLink" th:href="@{/reservation}">예약</a></li>
-              <li class="navItem"><a class="navLink" th:href="@{/login}">로그인</a></li>
+              <li class="navItem">
+                <a class="navLink" th:href="@{/room}">객실소개</a>
+              </li>
+              <li class="navItem">
+                <a class="navLink" th:href="@{/reservation}">예약</a>
+              </li>
+
+              <!-- ✅ 로그인 상태에 따라 변경되는 메뉴 -->
+              <li class="navItem" id="loginMenu">
+                <a class="navLink" th:href="@{/login}">로그인</a>
+              </li>
+              <li class="navItem" id="signupMenu">
+                <a class="navLink" th:href="@{/join}">회원가입</a>
+              </li>
+
+              <!-- ✅ 로그인 상태일 때 표시되는 메뉴 -->
+              <li class="navItem" id="logoutMenu" style="display: none">
+                <a class="navLink" href="#" id="logoutBtn">로그아웃</a>
+              </li>
+              <li class="navItem" id="mypageMenu" style="display: none">
+                <a class="navLink" th:href="@{/mypage/reservation_list}"
+                  >마이페이지</a
+                >
+              </li>
             </ul>
           </nav>
         </div>

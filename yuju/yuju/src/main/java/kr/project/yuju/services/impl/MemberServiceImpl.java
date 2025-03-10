@@ -191,7 +191,6 @@ public class MemberServiceImpl implements MemberService {
 
         // ✅ [2] 비밀번호 검증 (BCrypt 해싱 비교)
         boolean isPasswordMatch = passwordEncoder.matches(userPw, member.getUserPw());
-
         log.debug("🔐 비밀번호 검증 결과: {}", isPasswordMatch ? "✅ 일치" : "❌ 불일치");
 
         if (!isPasswordMatch) {
@@ -202,11 +201,10 @@ public class MemberServiceImpl implements MemberService {
         // ✅ [3] 로그인 성공 → JWT 발급
         String token = jwtUtil.generateToken(userId);
 
-        // ✅ [4] 토큰과 userId를 함께 반환 (Map 형식)
+        // ✅ [4] 로그인 결과 반환 (토큰 + userId)
         return Map.of(
             "token", token,
             "userId", userId
         );
     }
-
 }

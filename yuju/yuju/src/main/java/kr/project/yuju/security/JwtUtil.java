@@ -33,17 +33,16 @@ public class JwtUtil {
      */
     public String generateToken(String userId) {
         return Jwts.builder()
-            .header() // ✅ JWT 헤더 설정
-                .add("alg", "HS256") // ✅ 서명 알고리즘을 명시적으로 지정 (HMAC SHA-256)
-            .and()
-            .claims() // ✅ JWT에 저장할 클레임(Claim) 설정
-                .add("userId", userId)  // ✅ 사용자 ID 저장 (JWT 표준 클레임 sub대신 userId로 명시시)
-                .add(Claims.ISSUED_AT, new Date())  // ✅ 토큰 발급 시간 (iat)
+            .claims()
+                .add("sub", userId)  // ✅ JWT 표준 subject 사용 (ID를 의미)
+                .add("userId", userId)  // ✅ 추가적인 커스텀 클레임으로 userId 저장
+                .add(Claims.ISSUED_AT, new Date())  // ✅ 발급 시간 (iat)
                 .add(Claims.EXPIRATION, new Date(System.currentTimeMillis() + EXPIRATION_TIME)) // ✅ 만료 시간 (exp)
             .and()
             .signWith(key) // ✅ HMAC SHA-256 알고리즘을 사용하여 토큰 서명
-            .compact(); // ✅ 최종적으로 JWT 문자열 생성 및 반환
+            .compact();
     }
+    
 
     /**
      * ✅ JWT 토큰 검증 및 사용자 ID 추출 메서드
