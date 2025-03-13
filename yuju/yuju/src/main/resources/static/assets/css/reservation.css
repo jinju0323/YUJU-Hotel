@@ -1,72 +1,175 @@
-main {
-    width: 80%;
-    padding: 20px;
+/* ✅ 전체 레이아웃 */
+.reservation-container {
+    display: flex;
+    gap: 20px;
     max-width: 1200px;
-    margin: 0 auto;
-
-    h1 {
-        text-align: center;
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-
-    .date-selection {
-        background: white;
-        padding: 20px;
+    margin: 40px auto 0;
+    
+    /* ✅ 왼쪽: 인원 선택 */
+    .guest-selection {
+        width: 30%;
+        background: #f0f0f0; /* ✅ 바탕색 변경 */
+        padding: 30px;
         border-radius: 8px;
-        margin-bottom: 20px;
         text-align: center;
-    }
-
-    .calendar-container {
         display: flex;
-        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 
-        .calendar {
-            h2 {
-                margin-bottom: 5px;
+        /* ✅ 호텔 예약 문구 */
+        h2 {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .guest-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            width: 100%;
+
+            .guest-type {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                padding: 12px;
+                border-radius: 8px;
+                background: #e0e0e0; /* ✅ 인원 선택 부분 배경 색상 변경 */
+                box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+
+                .counter {
+                    display: flex;
+                    gap: 5px;
+
+                    button {
+                        &.plus, &.minus {
+                            background-color: #ff5a5f;
+                            color: white;
+                            border: none;
+                            padding: 8px 12px;
+                            cursor: pointer;
+                            border-radius: 4px;
+                        }
+                    }
+                }
             }
         }
     }
 
-    .room-selection {
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
+    /* ✅ 오른쪽: 예약 내용 */
+    .reservation-content {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
 
-        .room-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        h1 {
+            font-size: 27px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-            .room-item {
+        /* ✅ 날짜 선택 */
+        .date-selection {
+            background: white;
+            padding: 20px; /* ✅ 패딩 추가 */
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px; /* ✅ 날짜 선택과 객실 선택 사이 여백 확대 */
+
+            #check-in-out {
+                width: 60%;
+                padding: 14px;
+                text-align: center;
+                border: 2px solid #ddd;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+        }
+
+        /* ✅ 객실 선택 */
+        .room-selection {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+            .room-tabs {
                 display: flex;
-                background: #fff;
-                border-radius: 8px;
-                padding: 15px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                flex-direction: column;
+                align-items: center;
+                gap: 40px; /* ✅ 객실 간 여백 조정 */
+                width: 90%;
+                margin: 0 auto;
+            }
 
-                img {
-                    width: 150px;
-                    height: auto;
+            /* ✅ 객실 유형 */
+            .room-type {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 20px;
+
+                h3 {
+                    font-size: 20px;
+                    font-weight: bold;
+                    margin-bottom: 15px;
+                }
+            }
+
+            /* ✅ 객실 리스트 */
+            .room-list {
+                display: flex;
+                flex-direction: column;
+                gap: 25px; /* ✅ 객실 간 여백 추가 */
+                width: 100%;
+                align-items: center;
+
+                /* ✅ 객실 개별 항목 */
+                .room-item {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 25px;
+                    width: 100%;
+                    padding: 20px;
+                    text-align: left;
                     border-radius: 8px;
-                }
+                    background: #f9f9f9; /* ✅ 개별 객실 항목 배경색 추가 */
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 
-                .room-info {
-                    padding-left: 15px;
-                }
+                    /* ✅ 객실 이미지 */
+                    img {
+                        width: 260px;
+                        height: auto;
+                        border-radius: 8px;
+                    }
 
-                .reserve-button {
-                    background-color: #d9534f;
-                    color: white;
-                    border: none;
-                    padding: 10px 15px;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    margin-top: 10px;
+                    /* ✅ 객실 정보 */
+                    .room-info {
+                        text-align: left;
+                        flex: 1;
+                    }
 
-                    &:hover {
-                        background-color: #c9302c;
+                    /* ✅ 예약 버튼 */
+                    .reserve-button {
+                        background-color: #ff5a5f;
+                        color: white;
+                        border: none;
+                        padding: 12px 16px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 16px;
+                        font-weight: bold;
+                        transition: background-color 0.3s ease-in-out;
+
+                        &:hover {
+                            background-color: #e0484d;
+                        }
                     }
                 }
             }
@@ -74,76 +177,103 @@ main {
     }
 }
 
-/* ✅ 반응형: 태블릿 (768px 이하) */
+/* ✅ 반응형 디자인 (모바일) */
 @media (max-width: 768px) {
-    main {
-        width: 90%;
-        max-width: 100%;
+    .reservation-container {
+        flex-direction: column;
+        align-items: center;
 
-        h1 {
-            font-size: 22px;
+        .guest-selection {
+            width: 100%;
+            text-align: center;
         }
 
-        .calendar-container {
-            flex-direction: column;
-        }
+        .reservation-content {
+            width: 100%;
 
-        .room-selection {
+            .room-tabs {
+                width: 100%;
+            }
+
             .room-list {
-                gap: 15px;
+                align-items: center;
 
                 .room-item {
                     flex-direction: column;
-                    align-items: center;
-                    padding: 12px;
+                    text-align: center;
 
                     img {
-                        max-width: 250px;
+                        width: 100%;
+                        max-width: 280px;
                     }
 
                     .reserve-button {
                         width: 100%;
-                        padding: 12px;
-                    }
-                }
-            }
-        }
-    }
-}
-
-/* ✅ 반응형: 모바일 (480px 이하) */
-@media (max-width: 480px) {
-    main {
-        width: 90%;
-        max-width: 100%;
-
-        h1 {
-            font-size: 20px;
-        }
-
-        .date-selection {
-            padding: 15px;
-        }
-
-        .room-selection {
-            .room-list {
-                .room-item {
-                    padding: 10px;
-
-                    img {
-                        max-width: 220px;
-                    }
-
-                    .room-info {
-                        padding: 5px 0;
-                    }
-
-                    .reserve-button {
-                        width: 100%;
+                        max-width: 180px;
                         padding: 10px;
                     }
                 }
             }
         }
+    }
+}
+
+/* ✅ 반응형 디자인 (모바일) */
+@media (max-width: 480px) {
+    main {
+        width: 95%;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .date-selection {
+        padding: 15px;
+    }
+
+    .room-selection {
+        text-align: center;
+    }
+
+    .room-tabs {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .room-type {
+        width: 100%;
+        text-align: center;
+    }
+
+    .room-list {
+        gap: 10px;
+    }
+
+    .room-item {
+        padding: 10px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* ✅ 객실 이미지 크기 조정 */
+    .room-item img {
+        width: 100%;
+        max-width: 300px;
+        border-radius: 10px;
+    }
+
+    .room-info {
+        text-align: center;
+        padding: 5px 0;
+    }
+
+    .reserve-button {
+        width: 100%;
+        max-width: 180px;
+        padding: 10px;
     }
 }

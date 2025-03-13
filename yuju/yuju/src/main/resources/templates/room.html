@@ -3,7 +3,7 @@
 <head>
     <th:block th:replace="~{/fragments/head :: common-head('객실소개')}" />
     <link rel="stylesheet" th:href="@{/assets/css/room.css}" />
-    <script defer th:src="@{/assets/js/room.js}"></script>
+    <script th:src="@{/assets/js/room.js}"></script>
     <script>
         function loadRoom(roomId) {
             window.location.href = '/room?room_id=' + roomId;
