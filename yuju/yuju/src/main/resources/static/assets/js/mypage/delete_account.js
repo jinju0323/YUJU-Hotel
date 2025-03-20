@@ -1,3 +1,4 @@
+/** 입력필드 눈모양 아이콘 */
 document.querySelectorAll(".togglePassword").forEach((btn) => {
   btn.addEventListener("click", () => {
     const passwordInput = btn.previousElementSibling; // 바로 앞의 input 요소 선택

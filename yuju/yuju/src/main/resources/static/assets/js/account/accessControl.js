@@ -34,4 +34,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.href = "/login"; // ✅ 로그인 페이지로 이동
     return;
   }
+
+  /**
+   * ✅ [3] 로그아웃한 사용자가 접근할 수 없는 페이지 차단 (결제 관련)
+   *
+   * - 사용자가 로그인하지 않은 상태에서 `/payment/*` URL로 접근하면 안 됨
+   * - 로그인이 필요한 페이지이므로, 로그인 페이지(`/login`)로 강제 이동시킴
+   */
+  if (!token && currentPath.startsWith("/payment")) {
+    await utilHelper.alertWarning(
+      "로그인이 필요합니다.", // ✅ 경고 메시지
+      "로그인 페이지로 이동합니다." // ✅ 추가 설명
+    );
+    window.location.href = "/login"; // ✅ 로그인 페이지로 이동
+    return;
+  }
 });
