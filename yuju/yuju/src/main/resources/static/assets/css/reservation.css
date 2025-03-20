@@ -157,6 +157,7 @@
 
                     /* ✅ 예약 버튼 */
                     .reserve-button {
+                        text-decoration: none;
                         background-color: #ff5a5f;
                         color: white;
                         border: none;

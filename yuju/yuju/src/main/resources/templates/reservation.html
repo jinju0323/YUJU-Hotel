@@ -57,7 +57,7 @@
                               <h3 th:text="${room.roomType} + ' ' + ${room.roomCategory}">객실 유형</h3>
                               <p th:text="${room.description}">객실 설명</p>
                               <p th:text="|₩${#numbers.formatInteger(room.pricePerNight, 3, 'COMMA')}|">1박 가격</p>
-                              <button class="reserve-button" th:href="@{/payment}">예약하기</button>
+                              <a class="reserve-button" th:href="@{/payment}">예약하기</a>
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                               <h3 th:text="${room.roomType} + ' ' + ${room.roomCategory}">객실 유형</h3>
                               <p th:text="${room.description}">객실 설명</p>
                               <p th:text="|₩${#numbers.formatInteger(room.pricePerNight, 3, 'COMMA')}|">1박 가격</p>
-                              <button class="reserve-button" th:href="@{/payment}">예약하기</button>
+                              <a class="reserve-button" th:href="@{/payment}">예약하기</a>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                               <h3 th:text="${room.roomType} + ' ' + ${room.roomCategory}">객실 유형</h3>
                               <p th:text="${room.description}">객실 설명</p>
                               <p th:text="|₩${#numbers.formatInteger(room.pricePerNight, 3, 'COMMA')}|">1박 가격</p>
-                              <button class="reserve-button" th:href="@{/payment}">예약하기</button>
+                              <a class="reserve-button" th:href="@{/payment}">예약하기</a>
                             </div>
                         </div>
                     </div>
