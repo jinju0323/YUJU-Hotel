@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <th:block th:replace="~{/fragments/head :: common-head('객실결제')}" />
+    <!-- <link rel="stylesheet" th:href="@{/assets/css/payment.css}" /> -->
+</head>
+<body> 
+    <th:block th:replace="~{/fragments/header :: common-header}" />
+    
+    <main>
+        <div class="payment-container">
+            <!-- 왼쪽: 조식 선택 -->
+            <section class="left-section">
+                <h2>조식 선택</h2>
+                <label>
+                    <input type="checkbox" id="breakfast-checkbox">
+                    조식 추가
+                </label>
+            </section>
+
+            <!-- 오른쪽: 객실 가격 및 최종 가격 -->
+            <section class="right-section">
+                <h2>객실 정보</h2>
+                <p>객실정보</p>
+                <h2>날짜</h2>
+                <p>체크인-체크아웃</p>
+                <h2>객실 가격</h2>
+                <p>₩150,000</p>
+                <div id="breakfast-cost" style="display:none;">
+                    <h3>조식 추가 비용</h3>
+                    <p>₩20,000</p>
+                </div>
+                <h3>최종 가격</h3>
+                <p id="final-price">₩150,000</p>
+            </section>
+        </div>
+    </main>
+
+    <th:block th:replace="~{/fragments/footer :: common-footer}" />
+
+    <script>
+        // 객실 가격 및 조식 추가 비용을 계산하는 로직
+        const breakfastCheckbox = document.getElementById('breakfast-checkbox');
+        const breakfastCostSection = document.getElementById('breakfast-cost');
+        const finalPrice = document.getElementById('final-price');
+        
+        // 초기 객실 가격 설정
+        const roomPrice = 150000;
+        const breakfastPrice = 20000;
+
+        // 체크박스 상태에 따라 최종 가격을 갱신
+        breakfastCheckbox.addEventListener('change', function() {
+            if (breakfastCheckbox.checked) {
+                breakfastCostSection.style.display = 'block';
+                finalPrice.textContent = `₩${roomPrice + breakfastPrice}`;
+            } else {
+                breakfastCostSection.style.display = 'none';
+                finalPrice.textContent = `₩${roomPrice}`;
+            }
+        });
+    </script>
+</body>
+</html>
