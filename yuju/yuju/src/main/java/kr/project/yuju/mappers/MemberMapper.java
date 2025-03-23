@@ -106,6 +106,7 @@ public interface MemberMapper {
                 "edit_date " + 
             "FROM members " + 
             "WHERE user_id = #{userId} AND is_out = 'N'")
+    @ResultMap("memberResultMap")
     public Member login(Member input);
 
     /**
