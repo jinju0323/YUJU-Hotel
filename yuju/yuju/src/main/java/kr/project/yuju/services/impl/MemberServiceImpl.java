@@ -207,4 +207,77 @@ public class MemberServiceImpl implements MemberService {
             "userId", userId
         );
     }
+
+    /**
+     * ✅ 회원 탈퇴 처리
+     * - 비밀번호 확인 후 탈퇴 상태 업데이트
+     */
+    @Override
+    public boolean deleteMember(String userId, String currentPassword, String confirmPassword) throws Exception {
+        try {
+            // 비밀번호와 비밀번호 확인 일치 여부 체크
+            if (!currentPassword.equals(confirmPassword)) {
+                throw new Exception("비밀번호가 일치하지 않습니다.");
+            }
+
+            // 비밀번호가 일치하는지 암호화된 비밀번호 비교
+            Member member = new Member();
+            member.setUserId(userId);
+
+            // DB에서 사용자 비밀번호 가져오기
+            Member dbMember = memberMapper.selectItem(member);
+            if (dbMember == null) {
+                throw new Exception("회원 정보가 존재하지 않습니다.");
+            }
+
+            // 비밀번호 검증 (암호화된 비밀번호 비교)
+            if (!passwordEncoder.matches(currentPassword, dbMember.getUserPw())) {
+                throw new Exception("비밀번호가 유효하지 않습니다.");
+            }
+
+            // 탈퇴 처리 (is_out = 'Y')
+            int rowsUpdated = memberMapper.updateMemberToOut(userId);
+
+            if (rowsUpdated > 0) {
+                log.info("회원 탈퇴 처리 완료: {}", userId);
+                return true;
+            } else {
+                throw new Exception("탈퇴 처리에 실패했습니다.");
+            }
+        } catch (Exception e) {
+            log.error("회원 탈퇴 처리 중 오류 발생: {}", e.getMessage(), e);
+            throw e;
+        }
+    }
+
+    /**
+     * 탈퇴 상태인 회원 목록 조회 후 DB에서 삭제
+     */
+    @Override
+    public List<Member> deleteOutMembers() throws Exception {
+        List<Member> outMembers = null;
+
+        try {
+            // 1. 삭제 대상 조회
+            outMembers = memberMapper.selectOutMembers();
+
+            if (outMembers == null || outMembers.isEmpty()) {
+                return List.of(); // 빈 리스트 반환
+            }
+
+            // 2. DB에서 삭제
+            int rows = memberMapper.deleteOutMembers();
+
+            if (rows == 0) {
+                throw new Exception("탈퇴 회원 삭제 실패");
+            }
+
+        } catch (Exception e) {
+            log.error("❌ 실제 탈퇴 회원 삭제 처리 중 예외 발생", e);
+            throw e;
+        }
+
+        return outMembers;
+    }
+
 }

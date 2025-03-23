@@ -8,18 +8,17 @@ document.querySelectorAll(".togglePassword").forEach((btn) => {
     passwordInput.type = isPassword ? "text" : "password";
 
     // 아이콘 변경 (눈 → 눈 감은 아이콘)
-    btn.innerHTML = isPassword
-      ? '<i class="fas fa-eye-slash"></i>'
-      : '<i class="fas fa-eye"></i>';
+    btn.querySelector("i").classList.toggle("fa-eye-slash");
+    btn.querySelector("i").classList.toggle("fa-eye");
   });
 });
 
+/** 회원 탈퇴 요청 */
 document.addEventListener("DOMContentLoaded", () => {
   const deleteForm = document.getElementById("deleteAccountForm");
-  const deleteButton = deleteForm.querySelector(".btnDelete");
 
-  // 탈퇴 버튼 클릭 이벤트
-  deleteButton.addEventListener("click", async (e) => {
+  // 폼 제출 이벤트로 변경
+  deleteForm.addEventListener("submit", async (e) => {
     e.preventDefault(); // 기본 폼 제출 동작 방지
 
     const password = document.getElementById("password").value;
@@ -27,7 +26,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 비밀번호와 비밀번호 확인이 일치하는지 확인
     if (password !== confirmPassword) {
-      alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
+      await utilHelper.alertDanger(
+        "비밀번호가 일치하지 않습니다. 다시 확인해주세요."
+      );
+      return;
+    }
+
+    const userId = localStorage.getItem("userId"); // 로컬 스토리지에서 userId 가져오기
+
+    if (!userId) {
+      await utilHelper.alertDanger(
+        "사용자 정보가 없습니다. 다시 로그인 해주세요."
+      );
       return;
     }
 
@@ -40,8 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 사용자가 확인을 눌렀을 경우 탈퇴 처리 진행
       if (result.isConfirmed) {
-        // 서버 API 요청 (예시: 회원 탈퇴 요청)
-        await axiosHelper.post("/api/account/delete", { password });
+        // 서버 API 요청 (회원 탈퇴 요청)
+        await axios.post("/api/account/delete", {
+          userId: userId,
+          currentPassword: password,
+          confirmPassword: confirmPassword,
+        });
 
         // 탈퇴 성공 알림
         await utilHelper.alertSuccess("회원 탈퇴가 완료되었습니다.");

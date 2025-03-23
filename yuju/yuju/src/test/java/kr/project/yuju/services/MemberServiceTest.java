@@ -85,4 +85,49 @@ public class MemberServiceTest {
         assertTrue(output >= 0);
         log.debug("회원 수: {}", output);
     }
+
+    @Test
+    @DisplayName("회원 탈퇴 서비스 테스트")
+    void deleteMemberTest() throws Exception {
+        // 테스트용 데이터
+        String userId = "testuser@test.com";
+        String currentPassword = "testPass!123";
+        String confirmPassword = "testPass!123";
+
+        try {
+            // 회원 탈퇴 처리
+            boolean result = memberService.deleteMember(userId, currentPassword, confirmPassword);
+
+            // 결과 검증
+            assertTrue(result, "회원 탈퇴가 정상적으로 처리되지 않았습니다.");
+            log.debug("회원 탈퇴 처리 성공: {}", userId);
+        } catch (Exception e) {
+            log.error("회원 탈퇴 테스트 중 오류 발생: {}", e.getMessage());
+            fail("회원 탈퇴 테스트 실패: " + e.getMessage());
+        }
+    }
+
+    @Test
+    @DisplayName("탈퇴 회원 삭제 서비스 테스트")
+    void deleteOutMembersTest() throws Exception {
+        try {
+            // 탈퇴 회원 삭제 처리
+            List<Member> deletedMembers = memberService.deleteOutMembers();
+
+            // 결과 검증
+            assertNotNull(deletedMembers, "삭제된 회원 목록이 null입니다.");
+            log.debug("삭제된 탈퇴 회원 목록: {}", deletedMembers);
+
+            if (!deletedMembers.isEmpty()) {
+                log.debug("총 {}명의 탈퇴 회원이 삭제되었습니다.", deletedMembers.size());
+            } else {
+                log.debug("삭제할 탈퇴 회원이 없습니다.");
+            }
+        } catch (Exception e) {
+            log.error("탈퇴 회원 삭제 테스트 중 오류 발생: {}", e.getMessage());
+            fail("탈퇴 회원 삭제 테스트 실패: " + e.getMessage());
+        }
+    }
+
+
 }

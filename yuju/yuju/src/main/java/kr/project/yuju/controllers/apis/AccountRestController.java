@@ -11,6 +11,7 @@ import kr.project.yuju.models.Member;
 import kr.project.yuju.services.MemberService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -140,4 +141,34 @@ public class AccountRestController {
         }
     }
 
+    /**
+     * 회원 탈퇴 API
+     * @param userId 탈퇴할 사용자 ID
+     * @param currentPassword 현재 비밀번호
+     * @param confirmPassword 비밀번호 확인
+     * @return 처리 결과 메시지
+     */
+    @PostMapping("/api/account/delete")
+    public Map<String, Object> deleteAccount(@RequestBody Map<String, String> body) {
+        String userId = body.get("userId");
+        String currentPassword = body.get("currentPassword");
+        String confirmPassword = body.get("confirmPassword");
+    
+        try {
+            if (!currentPassword.equals(confirmPassword)) {
+                throw new Exception("비밀번호가 일치하지 않습니다.");
+            }
+    
+            boolean result = memberService.deleteMember(userId, currentPassword, confirmPassword);
+            if (result) {
+                return restHelper.sendJson(Map.of("message", "회원 탈퇴가 완료되었습니다."));
+            } else {
+                return restHelper.badRequest("탈퇴 처리에 실패했습니다.");
+            }
+        } catch (Exception e) {
+            return restHelper.badRequest(e);
+        }
+    }
+    
+    
 }

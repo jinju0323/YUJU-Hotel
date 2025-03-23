@@ -120,4 +120,48 @@ public interface MemberMapper {
                 "</where>" +
             "</script>")
     public int selectCount(Member input);
+
+    /**
+     * 비밀번호와 일치하는지 확인한 후, 탈퇴 처리 (is_out = 'Y')
+     * @param userId
+     * @return
+     */
+    @Update("UPDATE members SET " + 
+                "is_out = 'Y', " + 
+                "edit_date = NOW() " +
+            "WHERE " + 
+                "user_id = #{userId} AND " + 
+                "is_out = 'N'")
+    public int updateMemberToOut(@Param("userId") String userId);
+
+    /**
+     * 삭제 대상인 탈퇴 회원 목록 조회 (삭제 전 확인용)
+     */
+    @Select("SELECT " + 
+                "member_id, " + 
+                "user_name, " + 
+                "user_id, " + 
+                "user_pw, " + 
+                "is_out, " + 
+                "is_admin, " + 
+                "login_date, " + 
+                "reg_date, " + 
+                "edit_date " +  
+            "FROM members " + 
+            "WHERE " + 
+                "is_out = 'Y' AND " + 
+                "edit_date < DATE_SUB(NOW(), INTERVAL 30 DAY)")
+    @ResultMap("memberResultMap")
+    public List<Member> selectOutMembers(); 
+
+    /**
+     * 탈퇴한지 30일이 지난 회원 데이터를 삭제
+     * @return
+     */
+    @Delete("DELETE FROM members " + 
+                "WHERE is_out = 'Y' AND " + 
+                "edit_date < DATE_SUB(NOW(), INTERVAL 30 DAY)")
+    public int deleteOutMembers();
+
+
 }

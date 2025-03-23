@@ -71,4 +71,20 @@ public interface MemberService {
      */
     public Map<String, Object> login(String userId, String userPw) throws Exception;
 
+    /**
+     * 회원 탈퇴 기능
+     * @param userId 탈퇴할 사용자 ID
+     * @param currentPassword 현재 비밀번호
+     * @param confirmPassword 비밀번호 확인
+     * @return
+     * @throws Exception
+     */
+    public boolean deleteMember(String userId, String currentPassword, String confirmPassword) throws Exception;
+
+    /**
+     * 탈퇴 상태 회원 목록을 조회하고 실제 삭제 처리
+     * @return 삭제된 회원 목록
+     */
+    public List<Member> deleteOutMembers() throws Exception;
+
 }
