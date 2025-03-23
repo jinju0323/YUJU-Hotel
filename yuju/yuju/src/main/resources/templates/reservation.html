@@ -2,15 +2,11 @@
 <html lang="ko">
 <head>
     <th:block th:replace="~{/fragments/head :: common-head('객실예약')}" />
+    <th:block th:replace="~{/fragments/header :: common-header}" />
     <link rel="stylesheet" th:href="@{/assets/css/reservation.css}" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 <body>
-    <th:block th:replace="~{/fragments/header :: common-header}" />
-
     <main class="reservation-container">
         <!-- ✅ 왼쪽: 인원 선택 창 -->
         <section class="guest-selection">
@@ -107,6 +103,8 @@
 
     <th:block th:replace="~{/fragments/footer :: common-footer}" />
 
+    <!-- ✅ 공통 스크립트 -->
+    <th:block th:replace="~{/fragments/scripts :: common-scripts}" />
     <script>
       $(document).ready(function () {
         $("#check-in-out").daterangepicker({

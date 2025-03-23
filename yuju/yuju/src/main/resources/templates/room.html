@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
     <th:block th:replace="~{/fragments/head :: common-head('객실소개')}" />
+    <th:block th:replace="~{/fragments/header :: common-header}" />
     <link rel="stylesheet" th:href="@{/assets/css/room.css}" />
     <script th:src="@{/assets/js/room.js}"></script>
     <script>
@@ -11,8 +12,6 @@
     </script>
 </head>
 <body>
-    <th:block th:replace="~{/fragments/header :: common-header}" />
-
     <main class="room-container">
 
         <!-- ✅ 객실 유형 선택 -->

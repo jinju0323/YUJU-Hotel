@@ -2,11 +2,10 @@
 <html lang="ko">
 <head>
     <th:block th:replace="~{/fragments/head :: common-head('객실결제')}" />
-    <!-- <link rel="stylesheet" th:href="@{/assets/css/payment.css}" /> -->
+    <th:block th:replace="~{/fragments/header :: common-header}" />
+    <link rel="stylesheet" th:href="@{/assets/css/payment.css}" />
 </head>
 <body> 
-    <th:block th:replace="~{/fragments/header :: common-header}" />
-    
     <main>
         <div class="payment-container">
             <!-- 왼쪽: 조식 선택 -->
@@ -37,6 +36,8 @@
     </main>
 
     <th:block th:replace="~{/fragments/footer :: common-footer}" />
+    <!-- ✅ 공통 스크립트 -->
+    <th:block th:replace="~{/fragments/scripts :: common-scripts}" />
 
     <script>
         // 객실 가격 및 조식 추가 비용을 계산하는 로직
