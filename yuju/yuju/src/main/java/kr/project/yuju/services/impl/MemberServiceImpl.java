@@ -210,74 +210,78 @@ public class MemberServiceImpl implements MemberService {
 
     /**
      * ✅ 회원 탈퇴 처리
-     * - 비밀번호 확인 후 탈퇴 상태 업데이트
+     * - 비밀번호 확인 후 탈퇴 상태(`is_out = 'Y'`)로 업데이트
      */
     @Override
     public boolean deleteMember(String userId, String currentPassword, String confirmPassword) throws Exception {
         try {
-            // 비밀번호와 비밀번호 확인 일치 여부 체크
+            // 🔑 [1] 비밀번호와 비밀번호 확인 일치 여부 체크
             if (!currentPassword.equals(confirmPassword)) {
-                throw new Exception("비밀번호가 일치하지 않습니다.");
+                throw new Exception("비밀번호가 일치하지 않습니다."); // 비밀번호 불일치 시 예외 발생
             }
 
-            // 비밀번호가 일치하는지 암호화된 비밀번호 비교
+            // 🔍 [2] DB에서 사용자 정보 조회
             Member member = new Member();
             member.setUserId(userId);
-
-            // DB에서 사용자 비밀번호 가져오기
             Member dbMember = memberMapper.selectItem(member);
+
             if (dbMember == null) {
-                throw new Exception("회원 정보가 존재하지 않습니다.");
+                throw new Exception("회원 정보가 존재하지 않습니다."); // 사용자 정보가 없을 경우 예외 발생
             }
 
-            // 비밀번호 검증 (암호화된 비밀번호 비교)
+            // 🔐 [3] 비밀번호 검증 (암호화된 비밀번호 비교)
             if (!passwordEncoder.matches(currentPassword, dbMember.getUserPw())) {
-                throw new Exception("비밀번호가 유효하지 않습니다.");
+                throw new Exception("비밀번호가 유효하지 않습니다."); // 비밀번호 불일치 시 예외 발생
             }
 
-            // 탈퇴 처리 (is_out = 'Y')
+            // 🗑️ [4] 탈퇴 처리 (is_out = 'Y')
             int rowsUpdated = memberMapper.updateMemberToOut(userId);
 
             if (rowsUpdated > 0) {
-                log.info("회원 탈퇴 처리 완료: {}", userId);
-                return true;
+                log.info("✅ 회원 탈퇴 처리 완료: {}", userId);
+                return true; // 탈퇴 성공
             } else {
-                throw new Exception("탈퇴 처리에 실패했습니다.");
+                throw new Exception("탈퇴 처리에 실패했습니다."); // 업데이트 실패 시 예외 발생
             }
         } catch (Exception e) {
+            // ❌ [5] 예외 발생 시 로그 출력
             log.error("회원 탈퇴 처리 중 오류 발생: {}", e.getMessage(), e);
-            throw e;
+            throw e; // 예외를 다시 던져 호출자에게 알림
         }
     }
 
     /**
-     * 탈퇴 상태인 회원 목록 조회 후 DB에서 삭제
+     * ✅ 탈퇴 상태인 회원 목록 조회 후 DB에서 삭제
+     * - 탈퇴 상태(`is_out = 'Y'`)로 30일 이상 지난 회원을 삭제
      */
     @Override
     public List<Member> deleteOutMembers() throws Exception {
         List<Member> outMembers = null;
 
         try {
-            // 1. 삭제 대상 조회
+            // 🔍 [1] 삭제 대상 조회
             outMembers = memberMapper.selectOutMembers();
 
             if (outMembers == null || outMembers.isEmpty()) {
-                return List.of(); // 빈 리스트 반환
+                log.info("✅ 삭제할 탈퇴 회원이 없습니다.");
+                return List.of(); // 삭제할 회원이 없으면 빈 리스트 반환
             }
 
-            // 2. DB에서 삭제
+            // 🗑️ [2] DB에서 탈퇴 회원 삭제
             int rows = memberMapper.deleteOutMembers();
 
             if (rows == 0) {
-                throw new Exception("탈퇴 회원 삭제 실패");
+                throw new Exception("탈퇴 회원 삭제 실패"); // 삭제 실패 시 예외 발생
             }
 
+            log.info("✅ 총 {}명의 탈퇴 회원이 삭제되었습니다.", rows);
         } catch (Exception e) {
+            // ❌ [3] 예외 발생 시 로그 출력
             log.error("❌ 실제 탈퇴 회원 삭제 처리 중 예외 발생", e);
-            throw e;
+            throw e; // 예외를 다시 던져 호출자에게 알림
         }
 
-        return outMembers;
+        return outMembers; // 삭제된 회원 목록 반환
     }
 
 }

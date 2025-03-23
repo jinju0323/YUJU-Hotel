@@ -143,29 +143,40 @@ public class AccountRestController {
 
     /**
      * 회원 탈퇴 API
-     * @param userId 탈퇴할 사용자 ID
-     * @param currentPassword 현재 비밀번호
-     * @param confirmPassword 비밀번호 확인
-     * @return 처리 결과 메시지
+     * 
+     * @param body 요청 본문 (JSON 형식)
+     *             - userId: 탈퇴할 사용자 ID
+     *             - currentPassword: 현재 비밀번호
+     *             - confirmPassword: 비밀번호 확인
+     * @return 처리 결과 메시지 (JSON 형식)
      */
     @PostMapping("/api/account/delete")
     public Map<String, Object> deleteAccount(@RequestBody Map<String, String> body) {
-        String userId = body.get("userId");
-        String currentPassword = body.get("currentPassword");
-        String confirmPassword = body.get("confirmPassword");
-    
+        // 요청 본문에서 필요한 데이터 추출
+        String userId = body.get("userId"); // 탈퇴할 사용자 ID
+        String currentPassword = body.get("currentPassword"); // 현재 비밀번호
+        String confirmPassword = body.get("confirmPassword"); // 비밀번호 확인
+
         try {
+            // ✅ [1] 비밀번호와 비밀번호 확인이 일치하는지 검증
             if (!currentPassword.equals(confirmPassword)) {
-                throw new Exception("비밀번호가 일치하지 않습니다.");
+                throw new Exception("비밀번호가 일치하지 않습니다."); // 비밀번호 불일치 시 예외 발생
             }
-    
+
+            // ✅ [2] 회원 탈퇴 처리
             boolean result = memberService.deleteMember(userId, currentPassword, confirmPassword);
+
+            // ✅ [3] 탈퇴 처리 결과 확인
             if (result) {
+                // 탈퇴 성공 시 성공 메시지 반환
                 return restHelper.sendJson(Map.of("message", "회원 탈퇴가 완료되었습니다."));
             } else {
+                // 탈퇴 실패 시 클라이언트에 에러 메시지 반환
                 return restHelper.badRequest("탈퇴 처리에 실패했습니다.");
             }
         } catch (Exception e) {
+            // ✅ [4] 예외 발생 시 에러 메시지 반환
+            // 예외 메시지를 클라이언트에 반환 (400 Bad Request)
             return restHelper.badRequest(e);
         }
     }
