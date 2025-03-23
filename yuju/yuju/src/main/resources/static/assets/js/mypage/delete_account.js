@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // 🗑️ 로컬 스토리지에 저장된 정보 삭제
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
+        localStorage.removeItem("savedUserId");
 
         // 🔄 메인 페이지로 리디렉션
         window.location.href = "/";

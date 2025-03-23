@@ -120,7 +120,10 @@ document.getElementById("joinForm").addEventListener("submit", async (e) => {
       await utilHelper.alertSuccess(
         "회원가입 성공! 로그인 페이지로 이동합니다."
       );
-      // window.location = "[[@{/login}]]";
+
+      // ✅ 회원가입 완료 후, 기존 savedUserId 초기화
+      localStorage.removeItem("savedUserId");
+
       window.location = "/login";
     } else {
       await utilHelper.alertDanger("회원가입 실패. 다시 시도해주세요.");

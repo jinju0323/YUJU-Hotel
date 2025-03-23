@@ -90,6 +90,25 @@ public interface MemberMapper {
     public Member selectItem(Member input);
 
     /**
+     * 로그인 처리 - 회원탈퇴를 하지 않은 회원만 조회
+     * @param input
+     * @return
+     */
+    @Select("SELECT " + 
+                "member_id, " + 
+                "user_name, " + 
+                "user_id, " + 
+                "user_pw, " + 
+                "is_out, " + 
+                "is_admin, " + 
+                "login_date, " + 
+                "reg_date, " + 
+                "edit_date " + 
+            "FROM members " + 
+            "WHERE user_id = #{userId} AND is_out = 'N'")
+    public Member login(Member input);
+
+    /**
      * 회원 목록을 조회한다.
      * @param input
      * @return

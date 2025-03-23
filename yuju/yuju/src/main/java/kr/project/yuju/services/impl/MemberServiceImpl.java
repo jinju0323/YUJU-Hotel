@@ -183,7 +183,7 @@ public class MemberServiceImpl implements MemberService {
         input.setUserId(userId);
 
         // ✅ [1] DB에서 userId 조회
-        Member member = memberMapper.selectItem(input);
+        Member member = memberMapper.login(input);
         if (member == null) {
             log.warn("❌ 존재하지 않는 계정: {}", userId);
             throw new RuntimeException("아이디 또는 비밀번호가 올바르지 않습니다.");
