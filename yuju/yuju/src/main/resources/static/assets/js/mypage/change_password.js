@@ -80,3 +80,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+/**
+ * 🔒 비밀번호 입력 필드 눈모양 아이콘 클릭 이벤트
+ * - 비밀번호를 보이거나 숨길 수 있도록 전환
+ */
+document.querySelectorAll(".togglePassword").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const passwordInput = btn.previousElementSibling; // 바로 앞의 input 요소 선택
+    const isPassword = passwordInput.type === "password";
+
+    // 비밀번호 보이기/숨기기 전환
+    passwordInput.type = isPassword ? "text" : "password";
+
+    // 아이콘 변경 (눈 → 눈 감은 아이콘)
+    btn.querySelector("i").classList.toggle("fa-eye-slash");
+    btn.querySelector("i").classList.toggle("fa-eye");
+  });
+});

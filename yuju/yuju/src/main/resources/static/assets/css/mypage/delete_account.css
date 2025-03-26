@@ -1,7 +1,6 @@
 @import url("./mypage.css");
 
 /* 비밀번호 입력란과 아이콘 정렬 */
-/* 비밀번호 입력란과 아이콘 정렬 */
 .inputGroup {
   display: flex;
   align-items: center;
