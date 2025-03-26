@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <th:block th:replace="~{fragments/head :: common-head('관리자 페이지 - 예약현황')}" />
+  <head>
+    <th:block
+      th:replace="~{fragments/head :: common-head('관리자 페이지 - 예약현황')}"
+    />
     <link rel="stylesheet" th:href="@{/assets/css/admin/reservations.css}" />
     <th:block th:replace="~{/fragments/header :: common-header}" />
-</head>
-<body>
+  </head>
+  <body>
     <div class="reservations-container">
-        <div class="adminMain">
-            <!-- ✅ 사이드바 -->
-            <aside class="sidebar">
-                <h2>관리자 페이지</h2>
-                <ul>
-                    <li><a th:href="@{/admin}">매출 현황</a></li>
-                    <li>
-                        <a>예약 현황</a>
-                        <ul>
-                            <li><a th:href="@{/admin/reservations}">예약 조회/취소</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a>객실 현황</a>
-                        <ul>
-                            <li><a th:href="@{/admin/rooms}">객실 조회/수정</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </aside>
+      <div class="adminMain">
+        <!-- ✅ 사이드바 -->
+        <aside class="sidebar">
+          <h2>관리자 페이지</h2>
+          <ul>
+            <li><a th:href="@{/admin/total}">매출 현황</a></li>
+            <li>
+              <a>예약 현황</a>
+              <ul>
+                <li><a th:href="@{/admin/reservations}">예약 조회/취소</a></li>
+              </ul>
+            </li>
+            <li>
+              <a>객실 현황</a>
+              <ul>
+                <li><a th:href="@{/admin/rooms}">객실 조회/수정</a></li>
+              </ul>
+            </li>
+          </ul>
+        </aside>
 
-            <!-- ✅ 메인 콘텐츠 -->
-            <main class="reservationsContent">
-                <h2>예약 현황</h2>
-                <div class="reservationsTable">
-                </div>
-            </main>
-        </div>
+        <!-- ✅ 메인 콘텐츠 -->
+        <main class="reservationsContent">
+          <h2>예약 현황</h2>
+          <div class="reservationsTable"></div>
+        </main>
+      </div>
     </div>
 
     <th:block th:replace="~{/fragments/footer :: common-footer}" />
-</body>
+  </body>
 </html>
