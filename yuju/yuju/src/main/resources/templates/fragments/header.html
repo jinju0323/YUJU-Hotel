@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <th:block th:replace="~{/fragments/head :: common-head('헤더')}" />
-  </head>
+  <head th:replace="~{/fragments/head :: common-head('헤더')}"></head>
   <body>
     <header th:fragment="common-header">
       <div class="headerContainer">
@@ -14,9 +10,12 @@
             <div class="logo-1">YUJU</div>
           </a>
 
+          <!-- ✅ 햄버거 메뉴 버튼 (모바일용) -->
+          <div class="hamburger" id="hamburgerBtn">&#9776;</div>
+
           <!-- ✅ 네비게이션 메뉴 -->
           <nav class="navbar">
-            <ul class="navbarnav">
+            <ul class="navbarnav" id="navbarNav">
               <li class="navItem">
                 <a class="navLink" th:href="@{/room}">객실소개</a>
               </li>
@@ -46,5 +45,6 @@
         </div>
       </div>
     </header>
+    <script src="/assets/js/header.js"></script>
   </body>
 </html>

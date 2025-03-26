@@ -1,104 +1,137 @@
-/* ✅ 헤더 컨테이너 */
+/* ✅ 공통 헤더 구조 */
 .headerContainer {
-    width: 100%;
-    background-color: #f8f9fa;
-    border-bottom: 2px solid #ddd;
+  width: 100%;
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #ddd;
+  display: flex;
+  justify-content: center;
+
+  .headerMain {
+    width: 90%;
+    max-width: 1200px;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9375rem 0;
 
-    /* ✅ 헤더 내부 (1200px 고정) */
-    .headerMain {
-        width: 100%;
-        max-width: 1200px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 15px 0;
+    .logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
 
-        /* ✅ 로고 스타일 */
-        .logo {
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-
-            .logo-1 {
-                color: #007bff;
-                font-size: 32px;
-                font-weight: bold;
-                letter-spacing: 2px;
-            }
-        }
-
-        /* ✅ 네비게이션 메뉴 스타일 */
-        .navbar {
-            display: flex;
-
-            .navbarnav {
-                list-style: none;
-                display: flex;
-                gap: 30px;
-                margin: 0;
-                padding: 0;
-
-                .navItem {
-                    list-style: none;
-
-                    .navLink {
-                        text-decoration: none;
-                        color: #333;
-                        font-weight: bold;
-                        font-size: 16px;
-                        padding: 10px 15px;
-                        transition: color 0.3s;
-
-                        &:hover {
-                            color: #007bff;
-                        }
-                    }
-                }
-            }
-        }
+      .logo-1 {
+        color: #007bff;
+        font-size: 2rem;
+        font-weight: bold;
+        letter-spacing: 0.125rem;
+      }
     }
+
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .navbar {
+      .navbarnav {
+        list-style: none;
+        display: flex;
+        gap: 1.875rem;
+        margin: 0;
+        padding: 0;
+
+        .navItem {
+          .navLink {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 1rem;
+            padding: 0.625rem 0.9375rem;
+            transition: color 0.3s;
+
+            &:hover {
+              color: #007bff;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-/* ✅ 반응형: 태블릿 (768px 이하) */
 @media screen and (max-width: 768px) {
-    .headerContainer {
-        .headerMain {
-            max-width: 90%;
-            flex-direction: row;
-        }
+  .headerContainer {
+    .headerMain {
+      width: 90%;
+      flex-wrap: wrap;
 
-        .navbar {
-            .navbarnav {
-                gap: 20px;
+      .hamburger {
+        display: block;
+      }
+
+      .navbar {
+        width: 100%;
+        padding-top: 0.5rem;
+
+        .navbarnav {
+          width: 90%;
+          margin: 0 auto;
+          align-items: center;
+          gap: 0.75rem;
+          overflow: hidden;
+          max-height: 0;
+          opacity: 0;
+          transform: translateY(-0.625rem);
+          transition: all 0.3s ease;
+
+          &.active {
+            max-height: 500px; /* 충분한 높이로 설정 */
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          .navItem {
+            width: 100%;
+            text-align: center;
+
+            .navLink {
+              display: block;
+              width: 100%;
+              box-sizing: border-box;
+              font-size: 1rem;
+              padding: 0.5rem 1rem;
+              word-break: keep-all;
             }
+          }
         }
+      }
     }
+  }
 }
 
 /* ✅ 반응형: 모바일 (480px 이하) */
 @media screen and (max-width: 480px) {
-    .headerContainer {
-        .headerMain {
-            width: 95%;
-        }
-
-        .logo {
-            .logo-1 {
-                font-size: 24px;
-            }
-        }
-
-        .navbar {
-            .navbarnav {
-                gap: 15px;
-            }
-
-            .navLink {
-                font-size: 14px;
-                padding: 8px;
-            }
-        }
+  .headerContainer {
+    .headerMain {
+      width: 95%;
     }
+
+    .logo {
+      .logo-1 {
+        font-size: 1.5rem;
+      }
+    }
+
+    .navbar {
+      .navbarnav {
+        gap: 0.9375rem;
+      }
+
+      .navLink {
+        font-size: 0.875rem;
+        padding: 0.5rem;
+      }
+    }
+  }
 }
